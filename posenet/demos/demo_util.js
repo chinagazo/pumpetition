@@ -120,6 +120,7 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
     }
 
     const {y, x} = keypoint.position;
+    console.log(`${y * scale}, ${x * scale}`);
     drawPoint(ctx, y * scale, x * scale, 3, color);
   }
 }
