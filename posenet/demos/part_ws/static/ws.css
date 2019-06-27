@@ -15,7 +15,7 @@
 }
 
 #ws_part2{
-  text-align: center;
+ 
 }
 
 #ws_part3{
@@ -23,7 +23,7 @@
 }
 
 .imgp{
-  margin-left: 44%;
+  margin-left: 47%;
 }
 
 .WHOS-THE-WINNER {
@@ -131,7 +131,6 @@
 
   .User-123123 {
     position: relative;
-
     background-color: #ffffff;
     font-family: BrandonGrotesque;
     font-size: 18px;
@@ -141,6 +140,14 @@
   }
 
 .table1{
+  border: 1px solid #ffffff;
+  border-left-style:hidden;
+  border-right-style:hidden;
+  width: 70%;
+  height: 30%;
+
   margin: auto;
   text-align: center;
+
+ 
 }
