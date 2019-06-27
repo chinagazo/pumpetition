@@ -421,9 +421,11 @@ function detectPoseInRealTime(video, net) {
     // For each pose (i.e. person) detected in an image, loop through the poses
     // and draw the resulting skeleton and keypoints if over certain confidence
     // scores
+    let countPeople = 0;
     poses.forEach(({score, keypoints}) => {
       if (score >= minPoseConfidence) {
         if (guiState.output.showPoints) {
+          countPeople++;
           drawKeypoints(keypoints, minPartConfidence, ctx);
         }
         if (guiState.output.showSkeleton) {
@@ -434,6 +436,7 @@ function detectPoseInRealTime(video, net) {
         }
       }
     });
+    // console.log(countPeople);
 
     // End monitoring code for frames per second
     stats.end();
