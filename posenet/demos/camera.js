@@ -421,7 +421,7 @@ function detectPoseInRealTime(video, net) {
       ctx.save();
       ctx.scale(-1, 1);
       ctx.translate(-videoWidth, 0);
-      //ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
+      // ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
       ctx.restore();
     }
 
@@ -447,7 +447,6 @@ function detectPoseInRealTime(video, net) {
 
 
 function reatime_for_two() { // 대전 방 진입할 때 실행
-
   firebase.database().ref('lock').on('value', 
   function (data) {
       // on 의 콜백 함수는, DB (원격) 의 값이 바뀌면 호출된다.

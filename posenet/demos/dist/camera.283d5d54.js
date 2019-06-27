@@ -57328,7 +57328,7 @@ function detectPoseInRealTime(video, net) {
     if (guiState.output.showVideo) {
       ctx.save();
       ctx.scale(-1, 1);
-      ctx.translate(-videoWidth, 0); //ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
+      ctx.translate(-videoWidth, 0); // ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
 
       ctx.restore();
     } // For each pose (i.e. person) detected in an image, loop through the poses
