@@ -208,6 +208,7 @@
             height: 679px;
             object-fit: contain;
             transform: rotate(-119deg);
+            animation:spin 15s linear infinite;
             /* border-radius: 26px;
             border: solid 1px #979797; */
             top: 10%;
@@ -242,6 +243,7 @@
             left: 90%;
             }
             .navi{
+                /* position: absolute; */
                 width:100%; 
                 height:20px;
                 font-size:14px;
@@ -265,11 +267,10 @@
 
     
             #letsGo{
-                margin-top:10%;
                 width:245px;
                 height:245px;
                 object-fit:contain;
-                margin-left:40%;
+                margin-left:42%;
                 background-color: #18ffca;
                 border-radius: 50%;
                 border-color: #000000;
@@ -287,7 +288,7 @@
             .scoreboardleft{
                 position: absolute;
                 top:0%;
-                left:0%;
+                left:4%;
                 font-family: myFirstFont;
                 font-size:29px; 
                 text-shadow: 4px 2px 2px black;
@@ -301,20 +302,38 @@
                 font-size:29px; 
                 text-shadow: 4px 2px 2px black;
                 color: #ffffff;
-            }</style>
+            }
+            .We-track-your-poses {
+            
+                object-fit: contain;
+                font-family: myFirstFont2;
+                font-size: 20px;
+                font-weight: 500;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: center;
+                margin-top: 6em;
+                margin-left:1em;
+                color: #ffffff;
+            }
+
+            @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body class="Desktop-HD-Copy">
-    
+        
         <div class="navi">
-            <ul>
-                <li><a href="#WHY">WHY</a></li>
-                <li><a href="#HOW">HOW</a></li>
-                <li><a href="#RANKING">RANKING</a></li>
-                <li><a href="#ABOUTUS">ABOUT US</a></li>
-            </ul>
-        </div>
+                <ul>
+                    <li><a href="#HOME">HOME</a></li>
+                    <li><a href="#WHY">WHY</a></li>
+                    <li><a href="#HOW">HOW</a></li>
+                    <li><a href="#RANKING">RANKING</a></li>
+                    <li><a href="#ABOUTUS">ABOUT US</a></li>
+                </ul>
+            </div>
 
         <br>
     
@@ -340,28 +359,25 @@
     <img src="/combined-shape.2a638154.png" srcset="/combined-shape@2x.80f434ab.png 2x,/combined-shape@3x.65eaec4d.png 3x" class="Combined-Shape">
     <img src="/o.4ba34551.png" srcset="/o@2x.a7eaf2c1.png 2x,/o@3x.f0b8ee65.png 3x" class="O">
 
-    <button id="letsGo">LETS GO</button>
+    <p class="We-track-your-poses">We track your poses<br>
+    Inspire yourself while working out with people
+    </p>
+    <button id="letsGo" onclick="fnMove()">LETS GO</button>
     
-
-
   <div class="wrapper1" id="WHY">
-    <p>PoseNet Demos</p>
+    <p>HOW IT WORKS</p>
     <div class="HLorem-ipsum-dolor-s">
-        HLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula  eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient m
-        ontes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, preti
-        um quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliq
-        uet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+            We connect to people who want to fight a match to help people to get inspired 
+            workout more often. Through pose estimation technology, we track your bone
+            structure and count your movements.
     </div>
   </div>
-  <div class="wrapper2">
-    <p>HOW TO START THE MATCH</p>
+  <!-- <div class="wrapper2">
+    <p>WHAT WE OFFER</p>
     <div class="HLorem-ipsum-dolor-s">
-        HLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula  eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient m
-        ontes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, preti
-        um quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliq
-        uet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+        
     </div>
-  </div>
+  </div> -->
 
     <!-- <div class="footer">
         <div class="footer-text">
@@ -375,7 +391,8 @@
                 <i>higher</i> image scale factor results in higher accuracy but lower speed. </p>
         </div>
     </div> -->
-        <div id="main" style="display:none;" class="camerawrapper">
+       
+    <div id="main" style="display:none;" class="camerawrapper">
             <video id="video" playsinline="" style=" -moz-transform: scaleX(-1);
             -o-transform: scaleX(-1);
             -webkit-transform: scaleX(-1);
@@ -384,8 +401,8 @@
             ">
             </video>
             <canvas id="output" style="display:flex;">
-            
-                </canvas>
+            </canvas>
+                
                 <div class="scoreboardleft">
                     <h1>P1</h1>
                     30
@@ -395,11 +412,17 @@
                     50
                 </div>
             
-        </div>
-
-
-
-
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+      
+    </style>
+    <script>function fnMove() {
+  var offset = $("#main").offset();
+  $('html, body').animate({
+    scrollTop: offset.top
+  }, 400);
+}</script>
     <script src="/camera.283d5d54.js"></script>
 </body>
 
