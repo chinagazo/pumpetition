@@ -451,93 +451,93 @@ function detectPoseInRealTime(video, net) {
     /*===================== Kyuwon code ==================*/
 
 
-    function reatime_for_two() { // 대전 방 진입할 때 실행
+    // function reatime_for_two() { // 대전 방 진입할 때 실행
 
-      var player; // 1p일지 2p일지 결정 - 나중에 DB접근시 필요
-      var opposite;
+    //   var player; // 1p일지 2p일지 결정 - 나중에 DB접근시 필요
+    //   var opposite;
 
-      // lock 변수가 1인 상태로
-      var choose;
-      if (first) {
-        first = false;
-        firebase.database().ref('battle').child('p1').set(0);
-        firebase.database().ref('battle').child('p2').set(0);
-        choose = confirm('게임을 시작합니다.');
-      }
+    //   // lock 변수가 1인 상태로
+    //   var choose;
+    //   if (first) {
+    //     first = false;
+    //     firebase.database().ref('battle').child('p1').set(0);
+    //     firebase.database().ref('battle').child('p2').set(0);
+    //     choose = confirm('게임을 시작합니다.');
+    //   }
 
-      var player;
-      var op_player;
-      if (choose == true) {
-        player = 'p1';
-        op_player = 'p2';
-      }
-      else {
-        player = 'p2';
-        op_player = 'p1';
-      }
+    //   var player;
+    //   var op_player;
+    //   if (choose == true) {
+    //     player = 'p1';
+    //     op_player = 'p2';
+    //   }
+    //   else {
+    //     player = 'p2';
+    //     op_player = 'p1';
+    //   }
 
-      firebase.database().ref('battle').child(op_player).on('value', function (data) {
-        $("#op_point").val(data.val());
-      });
+    //   firebase.database().ref('battle').child(op_player).on('value', function (data) {
+    //     $("#op_point").val(data.val());
+    //   });
 
-      // DB업데이트 해주는 코드임 갖다 쓰샘 ㅋㅋ
-      function updatePlayerScore(score) {
-        firebase.database().ref('battle').child(player).set(score);
-      }
+    //   // DB업데이트 해주는 코드임 갖다 쓰샘 ㅋㅋ
+    //   function updatePlayerScore(score) {
+    //     firebase.database().ref('battle').child(player).set(score);
+    //   }
 
-      function updateOppositeScore(score) {
-        firebase.database().ref('battle').child(opposite).set(score);
-      }
-
-
-      /* 대전을 실행시키기 위한 각종 코드들 여기 삽입 */
-
-      /*================= new ==================*/
-      if (poses[0]) {
-        var pose_0 = poses[0];
-        var pose_0_score = pose_0.score;
-        var pose_0_keypoints = pose_0.keypoints;
-
-        //var pose_1 = poses[1];
-        //var pose_1_score = pose_1.score;
-        //var pose_1_keypoints = pose_1.keypoints;
-
-        function is_sitDown(keypoints) {
-          const std_h = videoHeight / 2;
-          var shoulder_h_avg = (keypoints[5].position.y + keypoints[6].position.y) / 2;
-
-          if (std_h > shoulder_h_avg) { // 앉았다
-            return true;
-          }
-          else {
-            return false;
-          }
-        }
-
-        var cur_stat = is_sitDown(pose_0_keypoints);
-        if (prev_stat == true && cur_stat == false) {
-          c0 += 1;
-          updatePlayerScore(c0);
-          console.log(c0);
-        }
-        prev_stat = cur_stat;
+    //   function updateOppositeScore(score) {
+    //     firebase.database().ref('battle').child(opposite).set(score);
+    //   }
 
 
-        function counter_0_reset() {
-          c0 = 0;
-          updatePlayerScore(0);
-          return;
+    //   /* 대전을 실행시키기 위한 각종 코드들 여기 삽입 */
 
-        }
+    //   /*================= new ==================*/
+    //   if (poses[0]) {
+    //     var pose_0 = poses[0];
+    //     var pose_0_score = pose_0.score;
+    //     var pose_0_keypoints = pose_0.keypoints;
 
-        /*=====================규원 코드 끝==========================*/
+    //     //var pose_1 = poses[1];
+    //     //var pose_1_score = pose_1.score;
+    //     //var pose_1_keypoints = pose_1.keypoints;
 
-      }
-    }
-    reatime_for_two();
+    //     function is_sitDown(keypoints) {
+    //       const std_h = videoHeight / 2;
+    //       var shoulder_h_avg = (keypoints[5].position.y + keypoints[6].position.y) / 2;
+
+    //       if (std_h > shoulder_h_avg) { // 앉았다
+    //         return true;
+    //       }
+    //       else {
+    //         return false;
+    //       }
+    //     }
+
+    //     var cur_stat = is_sitDown(pose_0_keypoints);
+    //     if (prev_stat == true && cur_stat == false) {
+    //       c0 += 1;
+    //       updatePlayerScore(c0);
+    //       console.log(c0);
+    //     }
+    //     prev_stat = cur_stat;
 
 
-    /* ======================================== */
+    //     function counter_0_reset() {
+    //       c0 = 0;
+    //       updatePlayerScore(0);
+    //       return;
+
+    //     }
+
+    //     /*=====================규원 코드 끝==========================*/
+
+    //   }
+    // }
+    // reatime_for_two();
+
+
+    // /* ======================================== */
 
 
 
