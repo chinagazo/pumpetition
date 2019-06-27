@@ -18,6 +18,7 @@ import * as posenet from '@tensorflow-models/posenet';
 import * as tf from '@tensorflow/tfjs';
 
 const color = 'aqua';
+const color2 = 'yellow'
 const boundingBoxColor = 'red';
 const lineWidth = 2;
 
@@ -53,15 +54,15 @@ function setDatGuiPropertyCss(propertyText, liCssString, spanCssString = '') {
 
 export function updateTryResNetButtonDatGuiCss() {
   setDatGuiPropertyCss(
-      tryResNetButtonText, tryResNetButtonBackgroundCss,
-      tryResNetButtonTextCss);
+    tryResNetButtonText, tryResNetButtonBackgroundCss,
+    tryResNetButtonTextCss);
 }
 
 /**
  * Toggles between the loading UI and the main canvas UI.
  */
 export function toggleLoadingUI(
-    showLoadingUI, loadingDivId = 'loading', mainDivId = 'main') {
+  showLoadingUI, loadingDivId = 'loading', mainDivId = 'main') {
   if (showLoadingUI) {
     document.getElementById(loadingDivId).style.display = 'block';
     document.getElementById(mainDivId).style.display = 'none';
@@ -71,7 +72,7 @@ export function toggleLoadingUI(
   }
 }
 
-function toTuple({y, x}) {
+function toTuple({ y, x }) {
   return [y, x];
 }
 
@@ -97,67 +98,107 @@ export function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
 /**
  * Draws a pose skeleton by looking up all adjacent keypoints/joints
  */
-export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
+export function drawSkeleton(num, keypoints, minConfidence, ctx, scale = 1) {
   const adjacentKeyPoints =
-      posenet.getAdjacentKeyPoints(keypoints, minConfidence);
+    posenet.getAdjacentKeyPoints(keypoints, minConfidence);
 
-  adjacentKeyPoints.forEach((keypoints) => {
-    drawSegment(
+  if (num == 0) {
+    adjacentKeyPoints.forEach((keypoints) => {
+      drawSegment(
         toTuple(keypoints[0].position), toTuple(keypoints[1].position), color,
         scale, ctx);
-  });
+    });
+  }
+  else {
+    adjacentKeyPoints.forEach((keypoints) => {
+      drawSegment(
+        toTuple(keypoints[0].position), toTuple(keypoints[1].position), boundingBoxColor,
+        scale, ctx);
+    });
+  }
 }
 
 let data = [];
 let data1 = {};
 
-export function storePointData(part, x, y){
-    data.push([part, x, y]);
-    data1[part] = {x,y};
+export function storePointData(part, x, y) {
+  data.push([part, x, y]);
+  data1[part] = { 'x': x, 'y': y };
 }
 
-setInterval(function(){
+setInterval(function () {
   data = [];
 }, 500);
 
+function checkRightPosition(part1) {
 
-function checkRightPosition(part1){
-
-    if((part1 == 'leftShoulder') || (part1 == 'leftElbow') || (part1 == 'leftWrist') || 
-    (part1 == 'rightShoulder') || (part1 == 'rightElbow') || (part1 == 'rightWrist')  ){
-      return true;
-    }
+  if ((part1 == 'leftShoulder') || (part1 == 'leftElbow') || (part1 == 'leftWrist') ||
+    (part1 == 'rightShoulder') || (part1 == 'rightElbow') || (part1 == 'rightWrist')) {
+    return true;
+  }
 }
 
+function find_angle(A, B, C) {
+  // console.log(`${A} ${B} ${C}`);
+
+  var AB = Math.sqrt(Math.pow(B['x'] - A['x'], 2) + Math.pow(B['y'] - A['y'], 2));
+  var BC = Math.sqrt(Math.pow(B['x'] - C['x'], 2) + Math.pow(B['y'] - C['y'], 2));
+  var AC = Math.sqrt(Math.pow(C['x'] - A['x'], 2) + Math.pow(C['y'] - A['y'], 2));
+  return Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB)) / Math.PI * 180;
+}
+
+var isChanged;
+
+function countCheck(value) {
+  if (value <= 100 && value > 0) {
+    isChanged = true;
+  }
+  else if (value >= 150) {
+    isChanged = false;
+  }
+}
+
+var count = 0;
 
 /**
  * Draw pose keypoints onto a canvas
  */
-export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
+export function drawKeypoints(num, keypoints, minConfidence, ctx, scale = 1) {
+  isChanged = false;
+  var flag = false;
   for (let i = 0; i < keypoints.length; i++) {
 
-      const keypoint = keypoints[i];
-  
-      if(checkRightPosition(keypoint.part)){
-        
+    const keypoint = keypoints[i];
+
+    if (!checkRightPosition(keypoint.part)) {
+      continue;
+    }
+
+    if (keypoint.score < minConfidence) {
+      continue;
+    }
+
+    if (data1.hasOwnProperty('leftShoulder') && data1.hasOwnProperty('leftElbow') && data1.hasOwnProperty('leftWrist')) {
+      //console.log(data1['leftShoulder']['x']);
+      let value = find_angle(data1['leftShoulder'], data1['leftElbow'], data1['leftWrist']);
+      //console.log(value);
+      countCheck(value);
+      if (isChanged && !flag) {
+        count = count + 1;
+        flag = true;
       }
-
-
-
-      if (keypoint.score < minConfidence) {
-        continue;
-      }
-  
-      const {y, x} = keypoint.position;
-      // console.log(`${keypoint.part}, x: ${x}, y: ${y}`);
-      storePointData(keypoint.part, x, y);
-      console.log(data.length);
+    }
+    const { y, x } = keypoint.position;
+    // console.log(`${keypoint.part}, x: ${x}, y: ${y}`);
+    storePointData(keypoint.part, x, y);
+    if (num == 0) {
       drawPoint(ctx, y * scale, x * scale, 3, color);
-  
-    
-
-  
+    }
+    else {
+      drawPoint(ctx, y * scale, x * scale, 3, color2);
+    }
   }
+  console.log(count);
 }
 
 /**
@@ -169,8 +210,8 @@ export function drawBoundingBox(keypoints, ctx) {
   const boundingBox = posenet.getBoundingBox(keypoints);
 
   ctx.rect(
-      boundingBox.minX, boundingBox.minY, boundingBox.maxX - boundingBox.minX,
-      boundingBox.maxY - boundingBox.minY);
+    boundingBox.minX, boundingBox.minY, boundingBox.maxX - boundingBox.minX,
+    boundingBox.maxY - boundingBox.minY);
 
   ctx.strokeStyle = boundingBoxColor;
   ctx.stroke();
@@ -248,9 +289,9 @@ function drawPoints(ctx, points, radius, color) {
  * https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5
  */
 export function drawOffsetVectors(
-    heatMapValues, offsets, outputStride, scale = 1, ctx) {
+  heatMapValues, offsets, outputStride, scale = 1, ctx) {
   const offsetPoints =
-      posenet.singlePose.getOffsetPoints(heatMapValues, outputStride, offsets);
+    posenet.singlePose.getOffsetPoints(heatMapValues, outputStride, offsets);
 
   const heatmapData = heatMapValues.buffer().values;
   const offsetPointsData = offsetPoints.buffer().values;
@@ -262,6 +303,6 @@ export function drawOffsetVectors(
     const offsetPointX = offsetPointsData[i + 1];
 
     drawSegment(
-        [heatmapY, heatmapX], [offsetPointY, offsetPointX], color, scale, ctx);
+      [heatmapY, heatmapX], [offsetPointY, offsetPointX], color, scale, ctx);
   }
 }
