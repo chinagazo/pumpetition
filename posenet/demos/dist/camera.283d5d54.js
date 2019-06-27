@@ -57328,8 +57328,8 @@ function detectPoseInRealTime(video, net) {
     if (guiState.output.showVideo) {
       ctx.save();
       ctx.scale(-1, 1);
-      ctx.translate(-videoWidth, 0);
-      ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
+      ctx.translate(-videoWidth, 0); //ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
+
       ctx.restore();
     } // For each pose (i.e. person) detected in an image, loop through the poses
     // and draw the resulting skeleton and keypoints if over certain confidence
@@ -57358,43 +57358,91 @@ function detectPoseInRealTime(video, net) {
     });
     /*===================== Kyuwon code ==================*/
 
-    if (poses[0]) {
-      var pose_0 = poses[0];
-      var pose_0_score = pose_0.score;
-      var pose_0_keypoints = pose_0.keypoints; //var pose_1 = poses[1];
-      //var pose_1_score = pose_1.score;
-      //var pose_1_keypoints = pose_1.keypoints;
+    function reatime_for_two() {
+      // 대전 방 진입할 때 실행
+      firebase.database().ref('lock').on('value', function (data) {
+        // on 의 콜백 함수는, DB (원격) 의 값이 바뀌면 호출된다.
+        // lock 변수는 0이면 아무도 없다는 것이고,
+        // 1 이면 누가 방에 들어와 있다는것이다. 즉 1일때 대전 시작되야 함.
+        var lock = data.val();
+        var player; // 1p일지 2p일지 결정 - 나중에 DB접근시 필요
 
-      function is_sitDown(keypoints) {
-        const std_h = videoHeight / 2;
-        var shoulder_h_avg = (keypoints[5].position.y + keypoints[6].position.y) / 2;
+        var opposite;
 
-        if (std_h > shoulder_h_avg) {
-          // 앉았다
-          return true;
+        if (lock == 0) {
+          //패스한다. -> 나중에 lock 바뀔때 콜백
+          player = 'p1'; // 먼저 들어온 선수가 p1
+
+          opposite = 'p2';
         } else {
-          return false;
+          // lock 변수가 1인 상태로 
+          lock = 0;
+          player = 'p2';
+          opposite = 'p1';
+          var ref = firebase.database().ref('battle');
+          ref.child('player').on('value', function (data) {
+            $("#me_point").val(data.val()); // me point 내 포인트 점수 가르쳐주는 HTML 엘레멘트 id임
+
+            $("#op_point").val(data.val()); // 상대 포인트 점수 가르쳐주는 곳
+          }); // DB업데이트 해주는 코드임 갖다 쓰샘 ㅋㅋ
+
+          function updatePlayerScore(score) {
+            firebase.database().ref('battle').child(player).set(score);
+          }
+
+          function updateOppositeScore(score) {
+            firebase.database().ref('battle').child(opposite).set(score);
+          }
+          /* 대전을 실행시키기 위한 각종 코드들 여기 삽입 */
+
+          /*================= new ==================*/
+
+
+          if (poses[0]) {
+            var pose_0 = poses[0];
+            var pose_0_score = pose_0.score;
+            var pose_0_keypoints = pose_0.keypoints; //var pose_1 = poses[1];
+            //var pose_1_score = pose_1.score;
+            //var pose_1_keypoints = pose_1.keypoints;
+
+            function is_sitDown(keypoints) {
+              const std_h = videoHeight / 2;
+              var shoulder_h_avg = (keypoints[5].position.y + keypoints[6].position.y) / 2;
+
+              if (std_h > shoulder_h_avg) {
+                // 앉았다
+                return true;
+              } else {
+                return false;
+              }
+            }
+
+            var cur_stat = is_sitDown(pose_0_keypoints);
+
+            if (prev_stat == true && cur_stat == false) {
+              c0 += 1;
+              updatePlayerScore(c0);
+              console.log(c0);
+            }
+
+            prev_stat = cur_stat;
+
+            function counter_0_reset() {
+              c0 = 0;
+              updatePlayerScore(0);
+              return;
+            }
+          }
+          /*=====================규원 코드 끝==========================*/
+
         }
-      }
-
-      var cur_stat = is_sitDown(pose_0_keypoints);
-
-      if (prev_stat == true && cur_stat == false) {
-        c0 += 1;
-        console.log(c0);
-      }
-
-      prev_stat = cur_stat;
-
-      function counter_0_reset() {
-        c0 = 0;
-        return;
-      }
+      });
     }
-    /*=====================규원 코드 끝==========================*/
+
+    reatime_for_two();
+    /* ======================================== */
     // console.log(countPeople);
     // End monitoring code for frames per second
-
 
     stats.end();
     requestAnimationFrame(poseDetectionFrame);

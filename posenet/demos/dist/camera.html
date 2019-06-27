@@ -411,7 +411,6 @@
                     <h1>P2</h1>
                     50
                 </div>
-            
     </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <style>
@@ -423,6 +422,30 @@
     scrollTop: offset.top
   }, 400);
 }</script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+                 https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyCSa3Vfhsfe6UCuijYr_RoaNb3kzFnwLZM",
+  authDomain: "openhackfinal.firebaseapp.com",
+  databaseURL: "https://openhackfinal.firebaseio.com",
+  projectId: "openhackfinal",
+  storageBucket: "",
+  messagingSenderId: "113425041146",
+  appId: "1:113425041146:web:58106b374a7d6631"
+}; // Initialize Firebase
+
+firebase.initializeApp(firebaseConfig);</script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+
+
+    <!--Camera.js 쓰기 전에 위의 Firebase Code 있어야 함.-->
     <script src="/camera.283d5d54.js"></script>
 </body>
 
