@@ -9,7 +9,8 @@
         /* width: 1440px;
         height: 1024px; */
         background-color: #000000;
-        overflow-y:scroll; 
+        overflow-x:hidden;
+        
         }
 
         .footer {
@@ -96,9 +97,9 @@
             width: 100%;
             height: 100%;
             font-family: myFirstFont;
-            font-size: 160px;
+            font-size: 124px;
             font-weight: normal;
-            margin-left:5%;
+            margin-left:15%;
             font-style: normal;
             font-stretch: normal;
             line-height: normal;
@@ -117,7 +118,7 @@
             height: 20%;
             -webkit-text-stroke: 1px #000000;
             font-family: myFirstFont;
-            font-size: 25px;
+            font-size: 31px;
             text-align:center;
             font-weight: normal;
             font-style: normal;
@@ -128,9 +129,9 @@
             }
             .Rectangle {
                 position:relative;
-                width: 87%;
+                width: 68%;
                 height: 50%;
-                margin-left:5%;
+                margin-left:15%;
                 margin-right:5%;
                 border: solid 1px  #9a9a9a;
                 background-color:  #9a9a9a;
@@ -203,6 +204,18 @@
             font-size: 31px;
             color: #ffffff;
             }
+            .round {
+            position: absolute;
+            width: 603.1px;
+            height: 679px;
+            object-fit: contain;
+            transform: rotate(-119deg);
+            /* border-radius: 26px;
+            border: solid 1px #979797; */
+            top: 10%;
+            left: 70%;
+            }
+
             .Combined-Shape {
             position: absolute;
             width: 466px;
@@ -213,20 +226,51 @@
             top: 40%;
             left: 0%;
             }
+            .O2 {
+            position: absolute;
+            width: 137px;
+            height: 216px;
+            object-fit: contain;
+            top: 2%;
+            left: 5%;
+            }
             .O {
             position: absolute;
             width: 79px;
             height: 124.5px;
             object-fit: contain;
-            top: 70%;
+            top: 50%;
             left: 90%;
             }
+            .navi{
+                width:71px; 
+                height:14px;
+                font-size:14px;
+                font-family: myFirstFont;
+                letter-spacing: normal;
+                color: #ffffff;
+                
+            }
+            li{
+                display:inline-block;
+                list-style-type: none;    
+            }
+            
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body class="Desktop-HD-Copy">
     
+        <nav class="navi">
+            <ul>
+                <li>WHY</li>
+                <li>HOW</li>
+                <li>RANKING</li>
+                <li>ABOUT US</li>
+            </ul>
+        </nav>
+
     
         <div id="info"  style='display:none'>
             </div>
@@ -244,6 +288,10 @@
                         PUMP OR DEATH - THE DEATH OF COMPETITION
                     </div>
                 </div>
+    <img src="o-2.png"
+    srcset="o-2@2x.png 2x,
+           o-2@3x.png 3x"
+   class="O2">
     <img src="round.png"
         srcset="round@2x.png 2x,
         round@3x.png 3x"
