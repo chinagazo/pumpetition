@@ -13,7 +13,7 @@ Pose Estimation(Posenet)을 기반으로 Health Game을 만들었습니다.
 이 프로젝트는 ./posenet/demos 에서 확인 하실 수 있었습니다
 * [sources](https://github.com/chinagazo/chinagazo/tree/master/posenet/demos)
 * [README](https://github.com/chinagazo/chinagazo/blob/master/posenet/demos/README.md)
-* hosted link: 제작중
+* [hosted link](https://chinagazo.github.io/chinagazo/posenet/demos/camera.html)
 
 ### LICENCE
 APACHE LICENCE 2.0 본 코드는 배포, 수정이 가능합니다.
