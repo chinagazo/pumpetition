@@ -108,20 +108,55 @@ export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
   });
 }
 
+let data = [];
+let data1 = {};
+
+export function storePointData(part, x, y){
+    data.push([part, x, y]);
+    data1[part] = {x,y};
+}
+
+setInterval(function(){
+  data = [];
+}, 500);
+
+
+function checkRightPosition(part1){
+
+    if((part1 == 'leftShoulder') || (part1 == 'leftElbow') || (part1 == 'leftWrist') || 
+    (part1 == 'rightShoulder') || (part1 == 'rightElbow') || (part1 == 'rightWrist')  ){
+      return true;
+    }
+}
+
+
 /**
  * Draw pose keypoints onto a canvas
  */
 export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
   for (let i = 0; i < keypoints.length; i++) {
-    const keypoint = keypoints[i];
 
-    if (keypoint.score < minConfidence) {
-      continue;
-    }
+      const keypoint = keypoints[i];
+  
+      if(checkRightPosition(keypoint.part)){
+        
+      }
 
-    const {y, x} = keypoint.position;
-    console.log(`${y * scale}, ${x * scale}`);
-    drawPoint(ctx, y * scale, x * scale, 3, color);
+
+
+      if (keypoint.score < minConfidence) {
+        continue;
+      }
+  
+      const {y, x} = keypoint.position;
+      // console.log(`${keypoint.part}, x: ${x}, y: ${y}`);
+      storePointData(keypoint.part, x, y);
+      console.log(data.length);
+      drawPoint(ctx, y * scale, x * scale, 3, color);
+  
+    
+
+  
   }
 }
 
