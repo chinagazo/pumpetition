@@ -1,0 +1,150 @@
+
+.Custom-Preset1 {
+    background-color: #000000;
+  }
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(OCRAStd.otf);
+     font-weight: bold;
+}
+
+/* 지워야 하는 부분 */
+
+.WHOS-THE-WINNER {
+    position: relative;
+    text-align: center;
+    -webkit-text-stroke: 1px #000000;
+    font-family: OCRAStd;
+    font-size: 44px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+
+
+  .Num112 {
+    position: relative;
+    font-family: BrandonGrotesque;
+    font-size: 246px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+
+.-PER-MINUTE- {
+    position: relative;
+    text-align: center;
+    -webkit-text-stroke: 1px #ffffff;
+    font-family: OCRAStd;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+
+  .n112 {
+    position: relative;
+    text-align: center;
+    font-family: BrandonGrotesque;
+    font-size: 246px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+
+  .USER-12345 {
+    text-align: center;
+    font-family: BrandonGrotesque;
+    font-size: 27px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+  
+  .Combined-Shape {
+    position: relative;
+    object-fit: contain;
+    background-color: #d8d8d8;
+    float:left ;
+  }
+
+  .SEOUL-SOUTH-KOREA {
+    position: relative;
+   text-align: center;
+   white-space: nowrap;
+    -webkit-text-stroke: 1px #ffffff;
+    
+    font-family: BrandonGrotesque;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #d8d8d8;
+  }
+
+  .Rectangle1 {
+    position: relative;
+
+    background-color: #f6f6f6;
+  }
+
+  .Table_Rank{
+    position: relative;
+
+    background-color: #ffffff;
+    font-family: BrandonGrotesque;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+
+  .Table_num{
+    position: relative;
+
+    background-color: #ffffff;
+    font-family: BrandonGrotesque;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+
+  .User-123123 {
+    position: relative;
+
+    background-color: #ffffff;
+    font-family: BrandonGrotesque;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+
