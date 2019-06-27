@@ -18,7 +18,7 @@ import * as posenet from '@tensorflow-models/posenet';
 // import dat from 'dat.gui';
 import Stats from 'stats.js';
 
-import {drawBoundingBox, drawKeypoints, drawSkeleton, isMobile, toggleLoadingUI, tryResNetButtonName, tryResNetButtonText, updateTryResNetButtonDatGuiCss} from './demo_util';
+import { drawBoundingBox, drawKeypoints, drawSkeleton, isMobile, toggleLoadingUI, tryResNetButtonName, tryResNetButtonText, updateTryResNetButtonDatGuiCss } from './demo_util';
 
 const videoWidth = 1500;
 const videoHeight = 500;
@@ -38,7 +38,7 @@ var prev_stat = false;
 async function setupCamera() {
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
     throw new Error(
-        'Browser API navigator.mediaDevices.getUserMedia not available');
+      'Browser API navigator.mediaDevices.getUserMedia not available');
   }
 
   const video = document.getElementById('video');
@@ -429,7 +429,7 @@ function detectPoseInRealTime(video, net) {
     // and draw the resulting skeleton and keypoints if over certain confidence
     // scores
     let countPeople = 0;
-    poses.forEach(({score, keypoints}) => {
+    poses.forEach(({ score, keypoints }) => {
       if (score >= minPoseConfidence) {
         if (guiState.output.showPoints) {
           countPeople++;
@@ -443,6 +443,7 @@ function detectPoseInRealTime(video, net) {
         }
       }
     });
+
 /*===================== Kyuwon code ==================*/
 
 
@@ -472,74 +473,74 @@ function reatime_for_two() { // 대전 방 진입할 때 실행
           firebase.database().ref('lock').set(0);
           firebase.database().ref('battle').child(player).set(0);
 
-          var ref = firebase.database().ref('battle');
+            var ref = firebase.database().ref('battle');
 
-          ref.child('player').on('value', function (data) {
+            ref.child('player').on('value', function (data) {
               $("#me_point").val(data.val()); // me point 내 포인트 점수 가르쳐주는 HTML 엘레멘트 id임
               $("#op_point").val(data.val()); // 상대 포인트 점수 가르쳐주는 곳
-          });
+            });
 
-          // DB업데이트 해주는 코드임 갖다 쓰샘 ㅋㅋ
-          function updatePlayerScore(score) {
+            // DB업데이트 해주는 코드임 갖다 쓰샘 ㅋㅋ
+            function updatePlayerScore(score) {
               firebase.database().ref('battle').child(player).set(score);
-          }
+            }
 
-          function updateOppositeScore(score) {
+            function updateOppositeScore(score) {
               firebase.database().ref('battle').child(opposite).set(score);
+            }
+
+
+            /* 대전을 실행시키기 위한 각종 코드들 여기 삽입 */
+
+            /*================= new ==================*/
+            if (poses[0]) {
+              var pose_0 = poses[0];
+              var pose_0_score = pose_0.score;
+              var pose_0_keypoints = pose_0.keypoints;
+
+              //var pose_1 = poses[1];
+              //var pose_1_score = pose_1.score;
+              //var pose_1_keypoints = pose_1.keypoints;
+
+              function is_sitDown(keypoints) {
+                const std_h = videoHeight / 2;
+                var shoulder_h_avg = (keypoints[5].position.y + keypoints[6].position.y) / 2;
+
+                if (std_h > shoulder_h_avg) { // 앉았다
+                  return true;
+                }
+                else {
+                  return false;
+                }
+              }
+
+              var cur_stat = is_sitDown(pose_0_keypoints);
+              if (prev_stat == true && cur_stat == false) {
+                c0 += 1;
+                updatePlayerScore(c0);
+                console.log(c0);
+              }
+              prev_stat = cur_stat;
+
+              function counter_0_reset() {
+                c0 = 0;
+                updatePlayerScore(0);
+                return;
+              }
+            }
+
+            /*=====================규원 코드 끝==========================*/
+
+
+
+
+
           }
-
-
-          /* 대전을 실행시키기 위한 각종 코드들 여기 삽입 */
-
-          /*================= new ==================*/
-if (poses[0]) {
-  var pose_0 = poses[0];
-  var pose_0_score = pose_0.score;
-  var pose_0_keypoints = pose_0.keypoints;
-
-  //var pose_1 = poses[1];
-  //var pose_1_score = pose_1.score;
-  //var pose_1_keypoints = pose_1.keypoints;
-
-  function is_sitDown(keypoints) {
-    const std_h = videoHeight / 2;
-    var shoulder_h_avg = (keypoints[5].position.y + keypoints[6].position.y) / 2;
-
-    if (std_h > shoulder_h_avg) { // 앉았다
-      return true;
+        });
     }
-    else {
-      return false;
-    }
-  }
+    reatime_for_two();
 
-  var cur_stat = is_sitDown(pose_0_keypoints);
-  if (prev_stat == true && cur_stat == false) {
-    c0 += 1;
-    updatePlayerScore(c0);
-    console.log(c0);
-  }
-  prev_stat = cur_stat;
-
-  function counter_0_reset() {
-    c0 = 0;
-    updatePlayerScore(0);
-    return;
-  }
-}
-
-  /*=====================규원 코드 끝==========================*/
-
-
-
-
- 
-      }
-  } );
-}
-reatime_for_two();
-
-         /* ======================================== */
+    /* ======================================== */
 
 
 
@@ -579,7 +580,7 @@ export async function bindPage() {
   } catch (e) {
     let info = document.getElementById('info');
     info.textContent = 'this browser does not support video capture,' +
-        'or this device does not have a camera';
+      'or this device does not have a camera';
     info.style.display = 'block';
     throw e;
   }
@@ -590,6 +591,6 @@ export async function bindPage() {
 }
 
 navigator.getUserMedia = navigator.getUserMedia ||
-    navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+  navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 // kick off the demo
 bindPage();
