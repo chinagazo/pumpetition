@@ -7,8 +7,12 @@
         /* width: 1440px;
         height: 1024px; */
         background-color: #000000;
-        overflow-x:hidden;
+        /* overflow-x:hidden; */
         
+        }
+
+        body::-webkit-scrollbar { 
+            display: none; 
         }
 
         .footer {
@@ -91,13 +95,14 @@
         }
 
         .PUMPETITION {
-            position:relative;
+            top:4%;
+            position:absolute;
             width: 100%;
             height: 100%;
             font-family: myFirstFont;
             font-size: 124px;
             font-weight: normal;
-            margin-left:15%;
+            margin-left:17%;
             font-style: normal;
             font-stretch: normal;
             line-height: normal;
@@ -116,7 +121,7 @@
             height: 20%;
             -webkit-text-stroke: 1px #000000;
             font-family: myFirstFont;
-            font-size: 31px;
+            font-size: 30px;
             text-align:center;
             font-weight: normal;
             font-style: normal;
@@ -126,21 +131,26 @@
             color: #000000;
             }
             .Rectangle {
-                position:relative;
-                width: 68%;
-                height: 50%;
-                margin-left:15%;
+                top: 18%;
+                position:absolute;
+                width: 66%;
+                height: 3%;
+                margin-left:17%;
                 margin-right:5%;
                 border: solid 1px  #9a9a9a;
                 background-color:  #9a9a9a;
+                padding-top:10px;
+                padding-bottom:10px;
             }
             .Oval {
+                top:7%;
                 position:relative;
                 width: 128px;
                 height: 128px;
                 background-color: #ffffff;
             }
             .LETSGO {
+                top:8%;
                 position:relative;
             width: 108px;
             height: 25px;
@@ -243,7 +253,8 @@
             left: 90%;
             }
             .navi{
-                /* position: absolute; */
+                top: 1%;
+                position: absolute;
                 width:100%; 
                 height:20px;
                 font-size:14px;
@@ -267,17 +278,19 @@
 
     
             #letsGo{
-                width:245px;
-                height:245px;
+                top:59%;
+                position:absolute;
+                width:200px;
+                height:200px;
                 object-fit:contain;
-                margin-left:42%;
+                margin-left:43%;
                 background-color: #18ffca;
                 border-radius: 50%;
                 border-color: #000000;
                 border-collapse: collapse;
                 font-family: myFirstFont;  
                 font-size:29px; 
-                line-height: 2.03;
+                line-height: 1.3;
                 color:black;
                 cursor:pointer;
             }
@@ -304,7 +317,9 @@
                 color: #ffffff;
             }
             .We-track-your-poses {
-            
+                top:50%;
+                left:36%;
+                position:absolute;
                 object-fit: contain;
                 font-family: myFirstFont2;
                 font-size: 20px;
@@ -314,9 +329,31 @@
                 line-height: normal;
                 letter-spacing: normal;
                 text-align: center;
-                margin-top: 6em;
                 margin-left:1em;
                 color: #ffffff;
+            }
+            #GOtext{
+                font-size:45px;
+            }
+            .players{
+                width:100px;
+                height:100px;
+            }
+            .HLorem-ipsum-dolor-s2 {
+            position: relative;
+            text-align: center;
+            width: 100%;
+            /* height: 145px; */
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont2;
+            font-size: 20px;
+            font-weight: 500;
+            color: #ffffff;
+            }
+           
+            .EF {
+                width: 1600px;
+                height: 1019px;
             }
 
             @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }</style>
@@ -325,6 +362,27 @@
 
 <body class="Desktop-HD-Copy">
         
+        <div id="main" style="display:none;" class="camerawrapper">
+                <video id="video" playsinline="" style=" -moz-transform: scaleX(-1);
+                -o-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+                display: none;
+                ">
+                </video>
+                <canvas id="output" style="display:flex;">
+                </canvas>
+                    
+                    <!-- <div class="scoreboardleft">
+                        <h1>P1</h1>
+                        30
+                    </div>
+                    <div class="scoreboardright">
+                        <h1>P2</h1>
+                        50
+                    </div> -->
+        
+
         <div class="navi">
                 <ul>
                     <li><a href="#HOME">HOME</a></li>
@@ -362,16 +420,24 @@
     <p class="We-track-your-poses">We track your poses<br>
     Inspire yourself while working out with people
     </p>
-    <button id="letsGo" onclick="fnMove()">LETS GO</button>
-    
-  <div class="wrapper1" id="WHY">
-    <p>HOW IT WORKS</p>
-    <div class="HLorem-ipsum-dolor-s">
+    <button type="button" id="letsGo"><a href="#mode">LETS<br><span id="GOtext">GO</span></a></button>
+    </div>
+    <div class="wrapper1" id="WHY">
+        <p>HOW IT WORKS</p>
+        <div class="HLorem-ipsum-dolor-s">
             We connect to people who want to fight a match to help people to get inspired 
             workout more often. Through pose estimation technology, we track your bone
             structure and count your movements.
+        </div>
     </div>
-  </div>
+    <div class="wrapper2" id="mode">
+            <p>SELECT THE PLAYER MODE</p>
+            <div class="HLorem-ipsum-dolor-s2">
+                    You can enjoy LIVE Mode alone or with your friends at home or play with your friends from different locations.          
+            </div>
+            <a href="/battle.html"><img width="50%" height="200%" src="/1p.3e067d8e.png" alt="1p"></a>
+            <a href="/battle.html"><img width="50%" height="200%" src="/2p.6593bb09.png" alt="2p"></a>
+    </div>
   <!-- <div class="wrapper2">
     <p>WHAT WE OFFER</p>
     <div class="HLorem-ipsum-dolor-s">
@@ -392,36 +458,17 @@
         </div>
     </div> -->
        
-    <div id="main" style="display:none;" class="camerawrapper">
-            <video id="video" playsinline="" style=" -moz-transform: scaleX(-1);
-            -o-transform: scaleX(-1);
-            -webkit-transform: scaleX(-1);
-            transform: scaleX(-1);
-            display: none;
-            ">
-            </video>
-            <canvas id="output" style="display:flex;">
-            </canvas>
-                
-                <div class="scoreboardleft">
-                    <h1>P1</h1>
-                    30
-                </div>
-                <div class="scoreboardright">
-                    <h1>P2</h1>
-                    50
-                </div>
-    </div>
+   
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <style>
       
     </style>
-    <script>function fnMove() {
-  var offset = $("#main").offset();
-  $('html, body').animate({
-    scrollTop: offset.top
-  }, 400);
-}</script>
+    <!-- <script>
+        function fnMove(){
+            var offset = $("#main").offset();
+            $('html, body').animate({scrollTop : offset.top}, 400);
+        }
+    </script> -->
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
