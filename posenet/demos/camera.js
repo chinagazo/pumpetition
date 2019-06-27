@@ -24,6 +24,13 @@ const videoWidth = 600;
 const videoHeight = 500;
 const stats = new Stats();
 
+/**********************
+ * 전역변수쓴당 몇번 일어나는지 카운터
+ * ********************/
+var c0 = 0;
+var c1 = 0;
+var prev_stat = false;
+
 /**
  * Loads a the camera to be used in the demo
  *
@@ -76,10 +83,10 @@ const defaultResNetInputResolution = 257;
 const guiState = {
   algorithm: 'multi-pose',
   input: {
-    architecture: 'MobileNetV1',
-    outputStride: defaultMobileNetStride,
-    inputResolution: defaultMobileNetInputResolution,
-    multiplier: defaultMobileNetMultiplier,
+    architecture: 'ResNet50',
+    outputStride: defaultResNetStride,
+    inputResolution: defaultResNetInputResolution,
+    multiplier: defaultResNetMultiplier,
     quantBytes: defaultQuantBytes
   },
   singlePoseDetection: {
@@ -278,7 +285,7 @@ function setupGui(cameras, net) {
  */
 function setupFPS() {
   stats.showPanel(0);  // 0: fps, 1: ms, 2: mb, 3+: custom
-  document.getElementById('main').appendChild(stats.dom);
+  // document.getElementById('main').appendChild(stats.dom);
 }
 
 /**
@@ -436,7 +443,7 @@ function detectPoseInRealTime(video, net) {
         }
       }
     });
-    // console.log(countPeople);
+    console.log(countPeople);
 
     // End monitoring code for frames per second
     stats.end();
@@ -446,6 +453,45 @@ function detectPoseInRealTime(video, net) {
 
   poseDetectionFrame();
 }
+
+/*===================== Kyuwon code ==================*/
+
+if (poses[0]) {
+  var pose_0 = poses[0];
+  var pose_0_score = pose_0.score;
+  var pose_0_keypoints = pose_0.keypoints;
+
+  //var pose_1 = poses[1];
+  //var pose_1_score = pose_1.score;
+  //var pose_1_keypoints = pose_1.keypoints;
+
+  function is_sitDown(keypoints) {
+    const std_h = videoHeight / 2;
+    var shoulder_h_avg = (keypoints[5].position.y + keypoints[6].position.y) / 2;
+
+    if (std_h > shoulder_h_avg) { // 앉았다
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  var cur_stat = is_sitDown(pose_0_keypoints);
+  if (prev_stat == true && cur_stat == false) {
+    c0 += 1;
+    console.log(c0);
+  }
+  prev_stat = cur_stat;
+
+  function counter_0_reset() {
+    c0 = 0;
+    return;
+  }
+}
+
+  /*=====================규원 코드 끝==========================*/
+
 
 /**
  * Kicks off the demo by loading the posenet model, finding and loading
@@ -474,8 +520,8 @@ export async function bindPage() {
     throw e;
   }
 
-  setupGui([], net);
-  setupFPS();
+  // setupGui([], net);
+  // setupFPS();
   detectPoseInRealTime(video, net);
 }
 

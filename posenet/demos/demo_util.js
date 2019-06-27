@@ -163,7 +163,6 @@ function countCheck(value){
  * Draw pose keypoints onto a canvas
  */
 export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
-  
 
 
     for (let i = 0; i < keypoints.length; i++) {
@@ -186,15 +185,15 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
           value = find_angle(data1['leftShoulder'], data1['leftElbow'], data1['leftWrist']);
           let checker = countCheck(value);
           
-          if(checker == 0 )
-          {
-            if(check > 2)
-            {
-              check = 0;
-              count += 1;
-            }
-          }
-          console.log(checker+", "+value+", "+check+", "+count);
+          // if(checker == 0 )
+          // {
+          //   if(check > 2)
+          //   {
+          //     check = 0;
+          //     count += 1;
+          //   }
+          // }
+          // console.log(checker+", "+value+", "+check+", "+count);
         }
 
         // if(data1.hasOwnProperty('rightShoulder') && data1.hasOwnProperty('rightElbow') && data1.hasOwnProperty('rightWrist') ){
