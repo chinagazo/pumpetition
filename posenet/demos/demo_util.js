@@ -113,51 +113,83 @@ let data1 = {};
 
 export function storePointData(part, x, y){
     data.push([part, x, y]);
-    data1[part] = {x,y};
+    data1[part] = {'x':x,'y':y};
 }
 
 setInterval(function(){
   data = [];
 }, 500);
 
-
 function checkRightPosition(part1){
 
     if((part1 == 'leftShoulder') || (part1 == 'leftElbow') || (part1 == 'leftWrist') || 
     (part1 == 'rightShoulder') || (part1 == 'rightElbow') || (part1 == 'rightWrist')  ){
-      return true;
+      
+        return true;
+      
     }
 }
 
+function find_angle(A, B, C) {
+  // console.log(`${A} ${B} ${C}`);
+
+  var AB = Math.sqrt(Math.pow(B['x'] - A['x'], 2) + Math.pow(B['y'] - A['y'], 2));
+  var BC = Math.sqrt(Math.pow(B['x'] - C['x'], 2) + Math.pow(B['y'] - C['y'], 2));
+  var AC = Math.sqrt(Math.pow(C['x'] - A['x'], 2) + Math.pow(C['y'] - A['y'], 2));
+  return Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB)) / Math.PI * 180;
+}
+
+let countPerson = 0;
+let isChanged = true;
+function countCheck(value){
+  if(value <= 90)
+  {
+    isChanged = true;
+  } 
+  else if(value >= 180)
+  {
+    isChanged = false;
+  }  
+}
 
 /**
  * Draw pose keypoints onto a canvas
  */
 export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
-  for (let i = 0; i < keypoints.length; i++) {
+  
+
+
+    for (let i = 0; i < keypoints.length; i++) {
 
       const keypoint = keypoints[i];
   
-      if(checkRightPosition(keypoint.part)){
-        
-      }
-
-
-
       if (keypoint.score < minConfidence) {
         continue;
       }
-  
-      const {y, x} = keypoint.position;
-      // console.log(`${keypoint.part}, x: ${x}, y: ${y}`);
-      storePointData(keypoint.part, x, y);
-      console.log(data.length);
-      drawPoint(ctx, y * scale, x * scale, 3, color);
-  
-    
+      // console.log(data1);
+      if(checkRightPosition(keypoint.part)){
+        const {y, x} = keypoint.position;
+        // console.log(`${keypoint.part}, x: ${x}, y: ${y}`);
+        storePointData(keypoint.part, x, y);
+        // console.log(data1);
+        // let keys = Object.keys(data1);
+        if(data1.hasOwnProperty('leftShoulder') && data1.hasOwnProperty('leftElbow') && data1.hasOwnProperty('leftWrist') ){
+          // console.log(data1['leftShoulder']['x']);
+          let value = find_angle(data1['leftShoulder'], data1['leftElbow'], data1['leftWrist']);
+          countCheck(value);
+        }
+        
 
-  
+        // if(){
+
+        // }
+
+        drawPoint(ctx, y * scale, x * scale, 3, color);
+      }
   }
+  // console.log(data.length);
+  console.log(countPerson);
+  
 }
 
 /**
