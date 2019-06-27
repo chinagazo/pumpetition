@@ -1,0 +1,18 @@
+<HTML>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<style>
+    div {margin-bottom:1000px;}
+</style>
+<script>
+    function fnMove(){
+        var offset = $("#main").offset();
+        $('html, body').animate({scrollTop : offset.top}, 400);
+    }
+</script>
+ <BODY>
+    <button onclick="fnMove('1')">div1로 이동</button>
+    <div id="div1">div1</div>
+    </BODY>
+</HTML>
+ 
+
