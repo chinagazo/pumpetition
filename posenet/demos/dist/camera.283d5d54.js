@@ -57374,8 +57374,9 @@ function detectPoseInRealTime(video, net) {
           player = 'p1'; // 먼저 들어온 선수가 p1
 
           opposite = 'p2';
+          lock = 1;
         } else {
-          // lock 변수가 1인 상태로 
+          // lock 변수가 1인 상태로
           lock = 0;
           player = 'p2';
           opposite = 'p1';
