@@ -1,0 +1,34 @@
+<html>
+    <head>
+         <script>
+  
+         </script>
+
+    </head>
+
+    <body>
+            <form id="addnew">
+                    <input type="text" class="id">
+                    <input type="text" class="content">
+                    <input type="submit" value="Add">
+                </form>
+                <script>
+                    jQuery(function($) {
+                        $('#form_addjts').submit(function(){
+                            writeToFile({
+                                id: $(this).find('.id').val(), 
+                                content: $(this).find('.content').val()
+                            });
+                            return false;
+                        }); 
+                        function writeToFile(data){
+                            var fso = new ActiveXObject("Scripting.FileSystemObject");
+                            var fh = fso.OpenTextFile("C:\\data.txt", 8);
+                            fh.WriteLine(data.id + ',' + data.content);
+                            fh.Close(); 
+                        } 
+                    }); 
+                </script>
+    </body>
+
+</html>

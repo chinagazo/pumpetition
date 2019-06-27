@@ -461,11 +461,16 @@ function reatime_for_two() { // 대전 방 진입할 때 실행
           //패스한다. -> 나중에 lock 바뀔때 콜백
           player = 'p1'; // 먼저 들어온 선수가 p1
           opposite = 'p2';
+          lock=1;
+          firebase.database().ref('lock').set(1);
+          firebase.database().ref('battle').child(player).set(0);
       }
       else { // lock 변수가 1인 상태로 
           lock = 0;
           player = 'p2';
           opposite = 'p1';
+          firebase.database().ref('lock').set(0);
+          firebase.database().ref('battle').child(player).set(0);
 
           var ref = firebase.database().ref('battle');
 
