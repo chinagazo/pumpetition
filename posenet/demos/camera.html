@@ -224,8 +224,8 @@
             object-fit: contain;
             /* border-radius: 26px;
             border: solid 1px #979797; */
-            top: 40%;
-            left: 0%;
+            top: 55%;
+            left: -8%;
             }
             .O2 {
             position: absolute;
@@ -240,7 +240,7 @@
             width: 79px;
             height: 124.5px;
             object-fit: contain;
-            top: 50%;
+            top: 100%;
             left: 90%;
             }
             .navi{
@@ -264,7 +264,46 @@
                 color: white;
                 text-decoration: none;
             }
-            
+
+    
+            #letsGo{
+                margin-top:10%;
+                width:245px;
+                height:245px;
+                object-fit:contain;
+                margin-left:40%;
+                background-color: #18ffca;
+                border-radius: 50%;
+                border-color: #000000;
+                border-collapse: collapse;
+                font-family: myFirstFont;  
+                font-size:29px; 
+                line-height: 2.03;
+                color:black;
+                cursor:pointer;
+            }
+
+            .camerawrapper{
+                position: relative;
+            }
+            .scoreboardleft{
+                position: absolute;
+                top:0%;
+                left:0%;
+                font-family: myFirstFont;
+                font-size:29px; 
+                text-shadow: 4px 2px 2px black;
+                color: #ffffff;
+            }
+            .scoreboardright{
+                position: absolute;
+                top:0%;
+                left:90%;
+                font-family: myFirstFont;
+                font-size:29px; 
+                text-shadow: 4px 2px 2px black;
+                color: #ffffff;
+            }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -315,6 +354,11 @@
     srcset="o@2x.png 2x,
            o@3x.png 3x"
    class="O">
+
+    <button id="letsGo">LETS GO</button>
+    
+
+
   <div class="wrapper1" id="WHY">
     <p>PoseNet Demos</p>
     <div class="HLorem-ipsum-dolor-s">
@@ -346,7 +390,7 @@
                 <i>higher</i> image scale factor results in higher accuracy but lower speed. </p>
         </div>
     </div> -->
-    <div id='main' style='display:none;'>
+        <div id='main' style='display:none;' class="camerawrapper">
             <video id="video" playsinline style=" -moz-transform: scaleX(-1);
             -o-transform: scaleX(-1);
             -webkit-transform: scaleX(-1);
@@ -357,8 +401,20 @@
             <canvas id="output" style="display:flex;">
             
                 </canvas>
+                <div class="scoreboardleft">
+                    <h1>P1</h1>
+                    30
+                </div>
+                <div class="scoreboardright">
+                    <h1>P2</h1>
+                    50
+                </div>
             
-    </div>
+        </div>
+
+
+
+
     <script src="camera.js"></script>
 </body>
 
