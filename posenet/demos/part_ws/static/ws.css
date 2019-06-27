@@ -22,6 +22,10 @@
 
 }
 
+.imgp{
+  margin-left: 44%;
+}
+
 .WHOS-THE-WINNER {
     position: relative;
     margin-top: 5%;
@@ -59,7 +63,6 @@
   }
 
   .USER-12345 {
-    
     text-align: center;
     margin:1px;
     font-family: BrandonGrotesque;
@@ -69,21 +72,16 @@
   }
   
   .Combined-Shape {
-    position: relative;
-    object-fit: contain;
- 
-    float:left ;
+
+    
   }
 
   .SEOUL-SOUTH-KOREA {
     position: relative;
-   text-align: center;
-   white-space: nowrap;
-    -webkit-text-stroke: 1px #ffffff;
-    
+    white-space: nowrap;
+    -webkit-text-stroke: 1px #ffffff;   
     font-family: BrandonGrotesque;
     font-size: 15px;
- 
     color: #d8d8d8;
   }
 
@@ -95,8 +93,6 @@
 
   .Table_Rank{
     position: relative;
-
-    background-color: #ffffff;
     font-family: BrandonGrotesque;
     font-size: 18px;
     font-weight: 500;
@@ -106,14 +102,32 @@
 
   .Table_num{
     position: relative;
-
-    background-color: #ffffff;
     font-family: BrandonGrotesque;
     font-size: 18px;
     font-weight: bold;
 
     color: #ffffff;
   }
+
+  .Table_Id{
+    position: relative;
+    font-family: BrandonGrotesque;
+    font-size: 18px;
+    font-weight: bold;
+
+    color: #ffffff;
+  }
+
+
+  .Table_Address{
+    position: relative;
+    font-family: BrandonGrotesque;
+    font-size: 18px;
+    font-weight: bold;
+
+    color: #ffffff;
+  }
+
 
   .User-123123 {
     position: relative;
