@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PoseNet - Camera Feed Demo</title>
+    <style>.Desktop-HD-Copy {
+        /* width: 1440px;
+        height: 1024px; */
+        background-color: #000000;
+        overflow-x:hidden;
+        
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: black;
+        }
+
+        .footer-text {
+            max-width: 600px;
+            text-align: center;
+            margin: auto;
+        }
+
+        @media only screen and (max-width: 600px) {
+
+            .footer-text,
+            .dg {
+                display: none;
+            }
+        }
+
+        /*
+         *  The following loading spinner CSS is from SpinKit project
+         *  https://github.com/tobiasahlin/SpinKit
+         */
+        .sk-spinner-pulse {
+            width: 20px;
+            height: 20px;
+            margin: auto 10px;
+            float: left;
+            background-color: #333;
+            border-radius: 100%;
+            -webkit-animation: sk-pulseScaleOut 1s infinite ease-in-out;
+            animation: sk-pulseScaleOut 1s infinite ease-in-out;
+        }
+
+        @-webkit-keyframes sk-pulseScaleOut {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            100% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sk-pulseScaleOut {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            100% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+                opacity: 0;
+            }
+        }
+/* 
+        @font-face{
+            font-family: 'OCRAStd';
+            font-style: normal;
+            font-size: 160px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #ffffff;
+        } */
+
+        .spinner-text {
+            float: left;
+        }
+
+        .PUMPETITION {
+            position:relative;
+            width: 100%;
+            height: 100%;
+            font-family: myFirstFont;
+            font-size: 124px;
+            font-weight: normal;
+            margin-left:15%;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #ffffff;
+        }
+        @font-face {
+            font-family: myFirstFont;
+            src: url(OCRAStd.0a099fb2.otf);
+             font-weight: bold;
+        }
+
+        .PUMP-OR-DEATH---THE {
+            position:relative;
+            width: 100%;
+            height: 20%;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 31px;
+            text-align:center;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+            }
+            .Rectangle {
+                position:relative;
+                width: 68%;
+                height: 50%;
+                margin-left:15%;
+                margin-right:5%;
+                border: solid 1px  #9a9a9a;
+                background-color:  #9a9a9a;
+            }
+            .Oval {
+                position:relative;
+                width: 128px;
+                height: 128px;
+                background-color: #ffffff;
+            }
+            .LETSGO {
+                position:relative;
+            width: 108px;
+            height: 25px;
+            background-color: #000000;
+            font-family: myFirstFont;
+            font-size: 25px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+            }
+ 
+            @font-face {
+                font-family: myFirstFont2;
+                src: url(Brandon_med.ad069a49.otf);
+                font-weight: bold;
+            }
+
+            .wrapper1{
+            display: table;
+            width: 201px;
+            height: 31px;
+            margin: 0 auto;
+            margin-top:100px;
+            }
+            .wrapper2{
+            display: table;
+            width: 514px;
+            height: 31px;
+            margin: 0 auto;
+            margin-top:100px;
+            }
+            .wrapper1 p {
+            position: relative;
+            text-align: center;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 31px;
+            color: #ffffff;
+            }
+            .HLorem-ipsum-dolor-s {
+            position: relative;
+            text-align: center;
+            width: 654px;
+            /* height: 145px; */
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont2;
+            font-size: 20px;
+            font-weight: 500;
+            color: #ffffff;
+            }
+            .wrapper2 p {
+            position: relative;
+            text-align: center;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 31px;
+            color: #ffffff;
+            }
+            .round {
+            position: absolute;
+            width: 603.1px;
+            height: 679px;
+            object-fit: contain;
+            transform: rotate(-119deg);
+            /* border-radius: 26px;
+            border: solid 1px #979797; */
+            top: 10%;
+            left: 70%;
+            z-index: -1;
+            }
+
+            .Combined-Shape {
+            position: absolute;
+            width: 466px;
+            height: 548px;
+            object-fit: contain;
+            /* border-radius: 26px;
+            border: solid 1px #979797; */
+            top: 55%;
+            left: -8%;
+            }
+            .O2 {
+            position: absolute;
+            width: 137px;
+            height: 216px;
+            object-fit: contain;
+            top: 2%;
+            left: 5%;
+            }
+            .O {
+            position: absolute;
+            width: 79px;
+            height: 124.5px;
+            object-fit: contain;
+            top: 100%;
+            left: 90%;
+            }
+            .navi{
+                width:100%; 
+                height:20px;
+                font-size:14px;
+                font-family: myFirstFont;
+                letter-spacing: normal;
+                color: #ffffff;
+            }
+            ul{
+                margin-left:60%;
+            }
+
+            ul, li{
+                display:inline;
+                list-style-type: none;
+            }
+
+            a{
+                color: white;
+                text-decoration: none;
+            }
+
+    
+            #letsGo{
+                margin-top:10%;
+                width:245px;
+                height:245px;
+                object-fit:contain;
+                margin-left:40%;
+                background-color: #18ffca;
+                border-radius: 50%;
+                border-color: #000000;
+                border-collapse: collapse;
+                font-family: myFirstFont;  
+                font-size:29px; 
+                line-height: 2.03;
+                color:black;
+                cursor:pointer;
+            }
+
+            .camerawrapper{
+                position: relative;
+            }
+            .scoreboardleft{
+                position: absolute;
+                top:0%;
+                left:0%;
+                font-family: myFirstFont;
+                font-size:29px; 
+                text-shadow: 4px 2px 2px black;
+                color: #ffffff;
+            }
+            .scoreboardright{
+                position: absolute;
+                top:0%;
+                left:90%;
+                font-family: myFirstFont;
+                font-size:29px; 
+                text-shadow: 4px 2px 2px black;
+                color: #ffffff;
+            }</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="Desktop-HD-Copy">
+    
+        <div class="navi">
+            <ul>
+                <li><a href="#WHY">WHY</a></li>
+                <li><a href="#HOW">HOW</a></li>
+                <li><a href="#RANKING">RANKING</a></li>
+                <li><a href="#ABOUTUS">ABOUT US</a></li>
+            </ul>
+        </div>
+
+        <br>
+    
+        <div id="info" style="display:none">
+            </div>
+            <div id="loading" style="display:flex;position: relative;">
+                <!-- <div class="spinner-text">
+                    Loading PoseNet model...
+                </div> -->
+                <div class="sk-spinner sk-spinner-pulse"></div>
+            </div>
+            <div class="PUMPETITION" style="display:flex;">
+                    <div>PUMPETITION</div>
+            </div>
+                <div class="Rectangle" style="display:flex;">
+                    <div class="PUMP-OR-DEATH---THE">
+                        PUMP OR DEATH - THE DEATH OF COMPETITION
+                    </div>
+                </div>
+    <img src="/o-2.1fa6fd97.png" srcset="/o-2@2x.c5f94955.png 2x,/o-2@3x.4f295fbb.png 3x" class="O2">
+    <img src="/round.6c9daedc.png" srcset="/round@2x.c7dba7ec.png 2x,/round@3x.afda59b3.png 3x" class="round">
+                
+    <img src="/combined-shape.2a638154.png" srcset="/combined-shape@2x.80f434ab.png 2x,/combined-shape@3x.65eaec4d.png 3x" class="Combined-Shape">
+    <img src="/o.4ba34551.png" srcset="/o@2x.a7eaf2c1.png 2x,/o@3x.f0b8ee65.png 3x" class="O">
+
+    <button id="letsGo">LETS GO</button>
+    
+
+
+  <div class="wrapper1" id="WHY">
+    <p>PoseNet Demos</p>
+    <div class="HLorem-ipsum-dolor-s">
+        HLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula  eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient m
+        ontes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, preti
+        um quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliq
+        uet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+    </div>
+  </div>
+  <div class="wrapper2">
+    <p>HOW TO START THE MATCH</p>
+    <div class="HLorem-ipsum-dolor-s">
+        HLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula  eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient m
+        ontes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, preti
+        um quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliq
+        uet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+    </div>
+  </div>
+
+    <!-- <div class="footer">
+        <div class="footer-text">
+            <p>
+                PoseNet runs with either a <strong>single-pose</strong> or <strong>multi-pose</strong> detection
+                algorithm. The single person pose detector is faster and more accurate but requires only one subject
+                present in the image.
+                <br>
+                <br> The <strong>output stride</strong> and <strong>input resolution</strong> have the largest effects
+                on accuracy/speed. A <i>higher</i> output stride results in lower accuracy but higher speed. A
+                <i>higher</i> image scale factor results in higher accuracy but lower speed. </p>
+        </div>
+    </div> -->
+        <div id="main" style="display:none;" class="camerawrapper">
+            <video id="video" playsinline="" style=" -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            display: none;
+            ">
+            </video>
+            <canvas id="output" style="display:flex;">
+            
+                </canvas>
+                <div class="scoreboardleft">
+                    <h1>P1</h1>
+                    30
+                </div>
+                <div class="scoreboardright">
+                    <h1>P2</h1>
+                    50
+                </div>
+            
+        </div>
+
+
+
+
+    <script src="/camera.283d5d54.js"></script>
+</body>
+
+</html>
