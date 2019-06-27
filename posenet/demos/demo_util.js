@@ -108,17 +108,18 @@ export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
   });
 }
 
-let data = [];
+let dataX = [];
+let dataY = [];
 let data1 = {};
 
 export function storePointData(part, x, y){
-    data.push([part, x, y]);
     data1[part] = {'x':x,'y':y};
 }
 
 setInterval(function(){
-  data = [];
-}, 500);
+  dataX = [];
+  dataY = [];
+}, 1000);
 
 function checkRightPosition(part1){
 
@@ -136,20 +137,26 @@ function find_angle(A, B, C) {
   var AB = Math.sqrt(Math.pow(B['x'] - A['x'], 2) + Math.pow(B['y'] - A['y'], 2));
   var BC = Math.sqrt(Math.pow(B['x'] - C['x'], 2) + Math.pow(B['y'] - C['y'], 2));
   var AC = Math.sqrt(Math.pow(C['x'] - A['x'], 2) + Math.pow(C['y'] - A['y'], 2));
-  return Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB)) / Math.PI * 180;
+  return parseInt((Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB)) / Math.PI * 180).toFixed(1));
 }
 
-let countPerson = 0;
-let isChanged = true;
+
+let check = 0;
+let count = 0;
+
 function countCheck(value){
-  if(value <= 90)
+  let status = 0;
+  if(value <= 90 && value >= 20)
   {
-    isChanged = true;
+    status = 0;
+    check++;
   } 
-  else if(value >= 180)
+  else if(value >= 160 )
   {
-    isChanged = false;
-  }  
+    status = 1;
+    check++;
+  }
+  return status;  
 }
 
 /**
@@ -173,12 +180,37 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
         storePointData(keypoint.part, x, y);
         // console.log(data1);
         // let keys = Object.keys(data1);
+        let value,value1;
         if(data1.hasOwnProperty('leftShoulder') && data1.hasOwnProperty('leftElbow') && data1.hasOwnProperty('leftWrist') ){
           // console.log(data1['leftShoulder']['x']);
-          let value = find_angle(data1['leftShoulder'], data1['leftElbow'], data1['leftWrist']);
-          countCheck(value);
+          value = find_angle(data1['leftShoulder'], data1['leftElbow'], data1['leftWrist']);
+          let checker = countCheck(value);
+          
+          if(checker == 0 )
+          {
+            if(check > 2)
+            {
+              check = 0;
+              count += 1;
+            }
+          }
+          console.log(checker+", "+value+", "+check+", "+count);
         }
+
+        // if(data1.hasOwnProperty('rightShoulder') && data1.hasOwnProperty('rightElbow') && data1.hasOwnProperty('rightWrist') ){
+        //   value1 = find_angle(data1['rightShoulder'], data1['rightElbow'], data1['rightWrist']);
+        // }
         
+        // if (value && value1){
+        //   dataX.push([value1]);
+        //   datay.push([value2]);
+        // }
+
+        // let resultX = dataX.reduce((total, score) => total + score) / scores.length;
+        // let resultY = dataY.reduce((total, score) => total + score) / scores.length;
+      
+
+
 
         // if(){
 
@@ -188,7 +220,7 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
       }
   }
   // console.log(data.length);
-  console.log(countPerson);
+
   
 }
 
