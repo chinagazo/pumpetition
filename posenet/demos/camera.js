@@ -446,6 +446,8 @@ function detectPoseInRealTime(video, net) {
         }
       }
     });
+
+
     /*===================== Kyuwon code ==================*/
 
 
@@ -520,6 +522,7 @@ function detectPoseInRealTime(video, net) {
         }
         prev_stat = cur_stat;
 
+
         function counter_0_reset() {
           c0 = 0;
           updatePlayerScore(0);
@@ -532,6 +535,7 @@ function detectPoseInRealTime(video, net) {
       }
     }
     reatime_for_two();
+
 
     /* ======================================== */
 
