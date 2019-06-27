@@ -10,77 +10,68 @@
 }
 
 /* 지워야 하는 부분 */
+#ws_part1{
+
+}
+
+#ws_part2{
+  text-align: center;
+}
+
+#ws_part3{
+
+}
 
 .WHOS-THE-WINNER {
     position: relative;
+    margin-top: 5%;
+    margin-bottom: 1%;
     text-align: center;
     -webkit-text-stroke: 1px #000000;
     font-family: OCRAStd;
     font-size: 44px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+
     color: #ffffff;
   }
 
 
-  .Num112 {
-    position: relative;
-    font-family: BrandonGrotesque;
-    font-size: 246px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #ffffff;
-  }
 
 .-PER-MINUTE- {
     position: relative;
+    margin: 1px;
     text-align: center;
-    -webkit-text-stroke: 1px #ffffff;
+    -webkit-text-stroke: 1px #000000;
     font-family: OCRAStd;
-    font-size: 14px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+    font-size: 9px;
+ 
     color: #ffffff;
   }
 
   .n112 {
     position: relative;
     text-align: center;
+    margin:0px;
+    /* padding-bottom : 1px; */
     font-family: BrandonGrotesque;
     font-size: 246px;
     font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
     color: #ffffff;
   }
 
   .USER-12345 {
+    
     text-align: center;
+    margin:1px;
     font-family: BrandonGrotesque;
     font-size: 27px;
     font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
     color: #ffffff;
   }
   
   .Combined-Shape {
     position: relative;
     object-fit: contain;
-    background-color: #d8d8d8;
+ 
     float:left ;
   }
 
@@ -92,11 +83,7 @@
     
     font-family: BrandonGrotesque;
     font-size: 15px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+ 
     color: #d8d8d8;
   }
 
@@ -113,10 +100,7 @@
     font-family: BrandonGrotesque;
     font-size: 18px;
     font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+ 
     color: #ffffff;
   }
 
@@ -127,10 +111,7 @@
     font-family: BrandonGrotesque;
     font-size: 18px;
     font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+
     color: #ffffff;
   }
 
@@ -141,10 +122,11 @@
     font-family: BrandonGrotesque;
     font-size: 18px;
     font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+
     color: #ffffff;
   }
 
+.table1{
+  margin: auto;
+  text-align: center;
+}
