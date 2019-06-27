@@ -9,6 +9,7 @@
         /* width: 1440px;
         height: 1024px; */
         background-color: #000000;
+        overflow-y:scroll; 
         }
 
         .footer {
@@ -91,23 +92,33 @@
         }
 
         .PUMPETITION {
-            width: 1268px;
-            height: 160px;
-            font-family: 'OCR A Std';
+            position:relative;
+            width: 100%;
+            height: 100%;
+            font-family: myFirstFont;
             font-size: 160px;
             font-weight: normal;
+            margin-left:5%;
             font-style: normal;
             font-stretch: normal;
             line-height: normal;
             letter-spacing: normal;
             color: #ffffff;
         }
+        @font-face {
+            font-family: myFirstFont;
+            src: url(OCRAStd.otf);
+             font-weight: bold;
+        }
+
         .PUMP-OR-DEATH---THE {
-            width: 893px;
-            height: 31px;
+            position:relative;
+            width: 100%;
+            height: 20%;
             -webkit-text-stroke: 1px #000000;
-            font-family: 'OCR A Std';
-            font-size: 31px;
+            font-family: myFirstFont;
+            font-size: 25px;
+            text-align:center;
             font-weight: normal;
             font-style: normal;
             font-stretch: normal;
@@ -116,43 +127,155 @@
             color: #000000;
             }
             .Rectangle {
-                width: 1236px;
-                height: 61px;
-                border: solid 1px #979797;
+                position:relative;
+                width: 87%;
+                height: 50%;
+                margin-left:5%;
+                margin-right:5%;
+                border: solid 1px  #9a9a9a;
+                background-color:  #9a9a9a;
+            }
+            .Oval {
+                position:relative;
+                width: 128px;
+                height: 128px;
                 background-color: #ffffff;
+            }
+            .LETSGO {
+                position:relative;
+            width: 108px;
+            height: 25px;
+            background-color: #000000;
+            font-family: myFirstFont;
+            font-size: 25px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+            }
+ 
+            @font-face {
+                font-family: myFirstFont2;
+                src: url(Brandon_med.otf);
+                font-weight: bold;
+            }
+
+            .wrapper1{
+            display: table;
+            width: 201px;
+            height: 31px;
+            margin: 0 auto;
+            margin-top:100px;
+            }
+            .wrapper2{
+            display: table;
+            width: 514px;
+            height: 31px;
+            margin: 0 auto;
+            margin-top:100px;
+            }
+            .wrapper1 p {
+            position: relative;
+            text-align: center;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 31px;
+            color: #ffffff;
+            }
+            .HLorem-ipsum-dolor-s {
+            position: relative;
+            text-align: center;
+            width: 654px;
+            /* height: 145px; */
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont2;
+            font-size: 20px;
+            font-weight: 500;
+            color: #ffffff;
+            }
+            .wrapper2 p {
+            position: relative;
+            text-align: center;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 31px;
+            color: #ffffff;
+            }
+            .Combined-Shape {
+            position: absolute;
+            width: 466px;
+            height: 548px;
+            object-fit: contain;
+            /* border-radius: 26px;
+            border: solid 1px #979797; */
+            top: 40%;
+            left: 0%;
+            }
+            .O {
+            position: absolute;
+            width: 79px;
+            height: 124.5px;
+            object-fit: contain;
+            top: 70%;
+            left: 90%;
             }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body class="Desktop-HD-Copy">
-    <div id="info"  style='display:none'>
+    
+    
+        <div id="info"  style='display:none'>
+            </div>
+            <div id="loading" style='display:flex;position: relative;'>
+                <div class="spinner-text">
+                    Loading PoseNet model...
+                </div>
+                <div class="sk-spinner sk-spinner-pulse"></div>
+            </div>
+            <div class="PUMPETITION" style="display:flex;">
+                    PUMPETITION
+            </div>
+                <div class="Rectangle" style="display:flex;">
+                    <div class="PUMP-OR-DEATH---THE">
+                        PUMP OR DEATH - THE DEATH OF COMPETITION
+                    </div>
+                </div>
+    <img src="round.png"
+        srcset="round@2x.png 2x,
+        round@3x.png 3x"
+    class="round">
+                
+    <img src="combined-shape.png"
+    srcset="combined-shape@2x.png 2x,
+            combined-shape@3x.png 3x"
+    class="Combined-Shape">
+    <img src="o.png"
+    srcset="o@2x.png 2x,
+           o@3x.png 3x"
+   class="O">
+  <div class="wrapper1">
+    <p>PoseNet Demos</p>
+    <div class="HLorem-ipsum-dolor-s">
+        HLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula  eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient m
+        ontes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, preti
+        um quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliq
+        uet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
     </div>
-    <div id="loading" style='display:flex'>
-        <div class="spinner-text">
-            Loading PoseNet model...
-        </div>
-        <div class="sk-spinner sk-spinner-pulse"></div>
+  </div>
+  <div class="wrapper2">
+    <p>HOW TO START THE MATCH</p>
+    <div class="HLorem-ipsum-dolor-s">
+        HLorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula  eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient m
+        ontes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, preti
+        um quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliq
+        uet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
     </div>
-    <div class="PUMPETITION">
-        PUMPETITION
-    </div>
-    <br>
-    <div class="Rectangle">
-        <div class="PUMP-OR-DEATH---THE">
-            PUMP OR DEATH - THE DEATH OF COMPETITION
-        </div>
-    </div>
-    <div id='main' style='display:none'>
-        <video id="video" playsinline style=" -moz-transform: scaleX(-1);
-        -o-transform: scaleX(-1);
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        display: none;
-        ">
-        </video>
-        <canvas id="output" />
-    </div>
+  </div>
+
     <!-- <div class="footer">
         <div class="footer-text">
             <p>
@@ -165,6 +288,19 @@
                 <i>higher</i> image scale factor results in higher accuracy but lower speed. </p>
         </div>
     </div> -->
+    <div id='main' style='display:none;'>
+            <video id="video" playsinline style=" -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            display: none;
+            ">
+            </video>
+            <canvas id="output" style="display:flex;">
+            
+                </canvas>
+            
+    </div>
     <script src="camera.js"></script>
 </body>
 

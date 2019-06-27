@@ -121,15 +121,15 @@ setInterval(function(){
   dataY = [];
 }, 1000);
 
-function checkRightPosition(part1){
+// function checkRightPosition(part1){
 
-    if((part1 == 'leftShoulder') || (part1 == 'leftElbow') || (part1 == 'leftWrist') || 
-    (part1 == 'rightShoulder') || (part1 == 'rightElbow') || (part1 == 'rightWrist')  ){
+//     if((part1 == 'leftShoulder') || (part1 == 'leftElbow') || (part1 == 'leftWrist') || 
+//     (part1 == 'rightShoulder') || (part1 == 'rightElbow') || (part1 == 'rightWrist')  ){
       
-        return true;
+//         return true;
       
-    }
-}
+//     }
+// }
 
 function find_angle(A, B, C) {
   // console.log(`${A} ${B} ${C}`);
@@ -173,7 +173,7 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
         continue;
       }
       // console.log(data1);
-      if(checkRightPosition(keypoint.part)){
+      // if(checkRightPosition(keypoint.part)){
         const {y, x} = keypoint.position;
         // console.log(`${keypoint.part}, x: ${x}, y: ${y}`);
         storePointData(keypoint.part, x, y);
@@ -221,7 +221,7 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
   // console.log(data.length);
 
   
-}
+// }
 
 /**
  * Draw the bounding box of a pose. For example, for a whole person standing
