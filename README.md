@@ -1,129 +1,30 @@
-# Pre-trained TensorFlow.js models
+# 환상의 스쿼트배틀 : PUMPETITION
 
-This repository hosts a set of pre-trained models that have been ported to
-TensorFlow.js.
+### 환영의 말
+개발자 여러분 힘내십시오! 모두 건강하셨으면 좋겠습니다.
+Pose Estimation(Posenet)을 기반으로 Health Game을 만들었습니다.
 
-The models are hosted on NPM and unpkg so they can be used in any project out of the box. They can be used directly or used in a transfer learning
-setting with TensorFlow.js.
+자리에 오래앉아있으면 허리디스크, 하지정맥류등 부작용이 많습니다.
+혼자 혹은 친구와 함께 스쿼트 게임을 즐기실 수 있습니다.
 
-To find out about APIs for models, look at the README in each of the respective
-directories. In general, we try to hide tensors so the API can be used by
-non-machine learning experts.
+건강한 하루 되십시오!
 
-For those interested in contributing a model, please file a [GitHub issue on tfjs](https://github.com/tensorflow/tfjs/issues) to gauge
-interest. We are trying to add models that complement the existing set of models
-and can be used as building blocks in other apps.
+### 공지!
+이 프로젝트는 ./posenet/demos 에서 확인 하실 수 있었습니다
+* [sources](https://github.com/chinagazo/chinagazo/tree/master/posenet/demos)
+* [README](https://github.com/chinagazo/chinagazo/blob/master/posenet/demos/README.md)
+* [hosted link](https://chinagazo.github.io/chinagazo/posenet/demos/camera.html)
 
-## Models
+### LICENCE
+APACHE LICENCE 2.0 본 코드는 배포, 수정이 가능합니다.
 
-<table style="max-width:100%;table-layout:auto;">
-  <tr style="text-align:center;">
-    <th>Type</th>
-    <th>Model</th>
-    <th>Demo</th>
-    <th>Details</th>
-    <th>Install</th>
-  </tr>
-  <!-- Images -->
-  <!-- ** MobileNet -->
-  <tr>
-    <td rowspan="8"><b>Images</b></td>
-    <td rowspan="2"><b><a style="white-space:nowrap; display:inline-block;" href="./mobilenet"><div style='vertical-align:middle; display:inline;'>MobileNet</div></a></b></td>
-    <td><a href=""></a></td>
-    <td rowspan="2">Classify images with labels from the <a href="http://www.image-net.org/">ImageNet database</a>.</td>
-    <td rowspan="2"><code>npm i @tensorflow-models/mobilenet</code></td>
-  </tr>
-  <tr>
-    <td><a href="./mobilenet/demo/index.html">source</a></td>
-  </tr>
-  <!-- ** PoseNet -->
-  <tr>
-    <td rowspan="2"><b><a style="white-space:nowrap; display:inline-block;" href="./posenet"><div style='vertical-align:middle; display:inline;'>PoseNet</div></a></b></td>
-    <td><a href="https://storage.googleapis.com/tfjs-models/demos/posenet/camera.html">live</a></td>
-    <td rowspan="2">A machine learning model which allows for real-time human pose estimation in the browser. See a detailed description <a href="https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5">here</a>.</td>
-    <td rowspan="2"><code>npm i @tensorflow-models/posenet</code></td>
-  </tr>
-  <tr>
-    <td><a href="./posenet/demos/camera.html">source</a></td>
-  </tr>
-  <!-- ** Coco SSD -->
-  <tr>
-    <td rowspan="2"><b><a style="white-space:nowrap; display:inline-block;" href="./coco-ssd"><div style='vertical-align:middle; display:inline;'>Coco SSD</div></a></b></td>
-    <td><a href=""></a></td>
-    <td rowspan="2">Object detection model that aims to localize and identify multiple objects in a single image. Based on the <a href="https://github.com/tensorflow/models/blob/master/research/object_detection/README.md">TensorFlow object detection API</a>.</td>
-    <td rowspan="2"><code>npm i @tensorflow-models/coco-ssd</code></td>
-  </tr>
-  <tr>
-    <td><a href="./coco-ssd/demo">source</a></td>
-  </tr>
-  <!-- ** BodyPix -->
-  <tr>
-    <td rowspan="2"><b><a style="white-space:nowrap; display:inline-block;" href="./body-pix"><div style='vertical-align:middle; display:inline;'>BodyPix</div></a></b></td>
-    <td><a href="https://storage.googleapis.com/tfjs-models/demos/body-pix/index.html">live</a></td>
-    <td rowspan="2">Real-time person and body part segmentation in the browser using TensorFlow.js.</td>
-    <td rowspan="2"><code>npm i @tensorflow-models/body-pix</code></td>
-  </tr>
-  <tr>
-    <td><a href="./body-pix/demos/index.html">source</a></td>
-  </tr>
-  <!-- * Audio -->
-  <!-- ** Speech Commands -->
-  <tr>
-    <td rowspan="2"><b>Audio</b></td>
-    <td rowspan="2"><b><a style="white-space:nowrap; display:inline-block;" href="./speech-commands"><div style='vertical-align:middle; display:inline;'>Speech Commands</div></a></b></td>
-    <td><a href="https://storage.googleapis.com/tfjs-speech-model-test/2019-01-03a/dist/index.html">live</a></td>
-    <td rowspan="2">Classify 1 second audio snippets from the <a href="https://www.tensorflow.org/tutorials/sequences/audio_recognition">speech commands dataset</a>.</td>
-    <td rowspan="2"><code>npm i @tensorflow-models/speech-commands</code></td>
-  </tr>
-  <tr>
-    <td><a href="./speech-commands/demo/index.html">source</a></td>
-  </tr>
-  <!-- * Text -->
-  <!-- ** Universal Sentence Encoder -->
-  <tr>
-    <td rowspan="4"><b>Text</b></td>
-    <td rowspan="2"><b><a style="white-space:nowrap; display:inline-block;" href="./universal-sentence-encoder"><div style='vertical-align:middle; display:inline;'>Universal Sentence Encoder</div></a></b></td>
-    <td><a href=""></a></td>
-    <td rowspan="2">Encode text into a 512-dimensional embedding to be used as inputs to natural language processing tasks such as sentiment classification and textual similarity.</td>
-    <td rowspan="2"><code>npm i @tensorflow-models/universal-sentence-encoder</code></td>
-  </tr>
-  <tr>
-    <td><a href="./universal-sentence-encoder/demo">source</a></td>
-  </tr>
-  <!-- ** Text Toxicity -->
-  <tr>
-    <td rowspan="2"><b><a style="white-space:nowrap; display:inline-block;" href="./toxicity"><div style='vertical-align:middle; display:inline;'>Text Toxicity</div></a></b></td>
-    <td><a href="https://storage.googleapis.com/tfjs-models/demos/toxicity/index.html">live</a></td>
-    <td rowspan="2">Score the perceived impact a comment might have on a conversation, from "Very toxic" to "Very healthy".</td>
-    <td rowspan="2"><code>npm i @tensorflow-models/toxicity</code></td>
-  </tr>
-  <tr>
-    <td><a href="./toxicity/demo/index.html">source</a></td>
-  </tr>
-  <!-- * General Utilities -->
-  <tr>
-    <td rowspan="2"><b>General Utilities</b></td>
-  <!-- ** KNN Classifier -->
-    <td rowspan="2"><b><a style="white-space:nowrap; display:inline-block;" href="./knn-classifier"><div style='vertical-align:middle; display:inline;'>KNN Classifier</div></a></b></td>
-    <td><a href=""></a></td>
-    <td rowspan="2">This package provides a utility for creating a classifier using the K-Nearest Neighbors algorithm. Can be used for transfer learning.</td>
-    <td rowspan="2"><code>npm i @tensorflow-models/knn-classifier</code></td>
-  </tr>
-  <tr>
-    <td><a href="./knn-classifier/demo">source</a></td>
-  </tr>
-</table>
+### Origin Codes
+Tensorflow/tfjs
+에서 참고하실 수 있습니다.
 
-## Development
-
-You can run the unit tests for any of the models by running the following
-inside a directory:
-
-`yarn test`
-
-New models should have a test NPM script (see [this](./mobilenet/package.json) `package.json` and `run_tests.ts` [helper](./mobilenet/run_tests.ts) for reference).
-
-To run all of the tests, you can run the following command from the root of this
-repo:
-
-`yarn presubmit`
+### 개발 후기
+* 오픈소스 사용해서 쉬울줄 알았는데 dependency 문제 심각해서 겁나 힘들었음
+* 코드가 뭘로 되있을지 몰라서 진짜 하이리스크 하이리턴이었는데 한 24시간정도 존버하면서 모니터만 보니까 문제 해결해씀
+* 깃 꼬여서 브랜치, 커밋 거의 사용 못함. 카톡으로 수동커밋했음 ㅋㅋㅋ 담부턴 관리 잘해야할듯!
+* 잠못자고 써서 무슨말하는지 모르겠음 ㅎㅎ
+* 그래도 작동되니까 보람 오짐!
