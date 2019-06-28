@@ -31,6 +31,16 @@ var c0 = 0;
 var c1 = 0;
 var prev_stat = false;
 var first = true;
+const player = 'p1';
+const op_player = 'p2';
+
+firebase.database().ref('battle').child('p1').set(0);
+firebase.database().ref('battle').child('p2').set(0);
+
+
+firebase.database().ref('battle').child(op_player).on('value', function (data) {
+  $("#oneP_c").html(data.val());
+});
 
 
 
@@ -453,28 +463,12 @@ function detectPoseInRealTime(video, net) {
 
     function reatime_for_two() { // 대전 방 진입할 때 실행
 
-      var player; // 1p일지 2p일지 결정 - 나중에 DB접근시 필요
-      var opposite;
-
-      // lock 변수가 1인 상태로
-      var choose;
-      if (first) {
-        first = false;
-        firebase.database().ref('battle').child('p1').set(0);
-        firebase.database().ref('battle').child('p2').set(0);
-        choose = true;
-      }
-
       var player;
       var op_player;
-      if (choose == true) {
-        player = 'p1';
-        op_player = 'p2';
-      }
-      else {
-        player = 'p2';
-        op_player = 'p1';
-      }
+
+      player = 'p1';
+      op_player = 'p2';
+    
 
       firebase.database().ref('battle').child(op_player).on('value', function (data) {
         $("#op_point").val(data.val());
@@ -486,7 +480,7 @@ function detectPoseInRealTime(video, net) {
       }
 
       function updateOppositeScore(score) {
-        firebase.database().ref('battle').child(opposite).set(score);
+        firebase.database().ref('battle').child(op_player).set(score);
       }
 
 
@@ -517,6 +511,7 @@ function detectPoseInRealTime(video, net) {
         var cur_stat = is_sitDown(pose_0_keypoints);
         if (prev_stat == true && cur_stat == false) {
           c0 += 1;
+          $("#twoP_c").html(c0);
           updatePlayerScore(c0);
           console.log(c0);
         }

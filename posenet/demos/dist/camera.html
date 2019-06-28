@@ -100,9 +100,9 @@
             width: 100%;
             height: 100%;
             font-family: myFirstFont;
-            font-size: 124px;
+            font-size: 140px;
             font-weight: normal;
-            margin-left:17%;
+            margin-left:20%;
             font-style: normal;
             font-stretch: normal;
             line-height: normal;
@@ -131,11 +131,11 @@
             color: #000000;
             }
             .Rectangle {
-                top: 18%;
+                top: 19%;
                 position:absolute;
-                width: 64%;
+                width: 57.5%;
                 height: 3%;
-                margin-left:17%;
+                margin-left:20%;
                 margin-right:5%;
                 border: solid 1px  #9a9a9a;
                 background-color:  #9a9a9a;
@@ -176,9 +176,17 @@
             width: 201px;
             height: 31px;
             margin: 0 auto;
-            margin-top:100px;
+            margin-top:260px;
             }
             .wrapper2{
+            display: table;
+            width: 700px;
+            height: 31px;
+            margin: 0 auto;
+            margin-top:320px;
+            margin-bottom: 200px;
+            }
+            .wrapper2_1{
             display: table;
             width: 514px;
             height: 31px;
@@ -212,6 +220,15 @@
             font-size: 31px;
             color: #ffffff;
             }
+            .wrapper2_1 p {
+            position: relative;
+            text-align: center;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 32px;
+            width: 530px;
+            color: #18ffca;
+            }
             .round {
             position: absolute;
             width: 603.1px;
@@ -228,13 +245,13 @@
 
             .Combined-Shape {
             position: absolute;
-            width: 466px;
-            height: 548px;
+            width: 932px;
+            height: 1096px;
             object-fit: contain;
             /* border-radius: 26px;
             border: solid 1px #979797; */
-            top: 55%;
-            left: -8%;
+            top: 107%;
+            left: -12%;
             }
             .O2 {
             position: absolute;
@@ -246,11 +263,12 @@
             }
             .O {
             position: absolute;
-            width: 79px;
-            height: 124.5px;
+            width: 122px;
+            height: 70%;
             object-fit: contain;
             top: 100%;
-            left: 90%;
+            left: 76%;
+            transform:scale(2.5);
             }
             .navi{
                 top: 1%;
@@ -276,14 +294,17 @@
                 text-decoration: none;
             }
 
+            li > a {
+                color:white;
+            }
     
             #letsGo{
-                top:59%;
+                top:89%;
                 position:absolute;
                 width:200px;
                 height:200px;
                 object-fit:contain;
-                margin-left:43%;
+                margin-left:45%;
                 background-color: #18ffca;
                 border-radius: 50%;
                 border-color: #000000;
@@ -317,8 +338,8 @@
                 color: #ffffff;
             }
             .We-track-your-poses {
-                top:50%;
-                left:36%;
+                top:79%;
+                left:40%;
                 position:absolute;
                 object-fit: contain;
                 font-family: myFirstFont2;
@@ -348,12 +369,38 @@
             font-family: myFirstFont2;
             font-size: 20px;
             font-weight: 500;
+            margin-bottom:68px;
             color: #ffffff;
             }
            
             .EF {
                 width: 1600px;
                 height: 1019px;
+            }
+
+            .Group-3{
+                position: absolute;
+                width: 252px;
+                height: 426px;
+                object-fit: contain;
+                top:0%;
+                left:28%;
+                margin-bottom: 50px;
+            }
+
+            .HLorem-ipsum-dolor-s3 {
+            position: relative;
+            text-align: center;
+            width: 100%;
+            height: 300px;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont2;
+            text-align: center;
+            font-size: 30px;
+            }
+
+            .dummy{
+                background: url(monster1.d73d4383.gif);
             }
 
             @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }</style>
@@ -387,7 +434,7 @@
                 <ul>
                     <li><a href="#HOME">HOME</a></li>
                     <li><a href="#WHY">WHY</a></li>
-                    <li><a href="#HOW">HOW</a></li>
+                    <li><a href="#mode">HOW</a></li>
                     <li><a href="#RANKING">RANKING</a></li>
                     <li><a href="#ABOUTUS">ABOUT US</a></li>
                 </ul>
@@ -415,7 +462,7 @@
     <img src="/round.6c9daedc.png" srcset="/round@2x.c7dba7ec.png 2x,/round@3x.afda59b3.png 3x" class="round">
                 
     <img src="/combined-shape.2a638154.png" srcset="/combined-shape@2x.80f434ab.png 2x,/combined-shape@3x.65eaec4d.png 3x" class="Combined-Shape">
-    <img src="/o.4ba34551.png" srcset="/o@2x.a7eaf2c1.png 2x,/o@3x.f0b8ee65.png 3x" class="O">
+    <img src="/o@3x.f0b8ee65.png" srcset="/o@2x.a7eaf2c1.png 2x,/o@3x.f0b8ee65.png 3x" class="O">
 
     <p class="We-track-your-poses">We track your poses<br>
     Inspire yourself while working out with people
@@ -430,20 +477,24 @@
             structure and count your movements.
         </div>
     </div>
+    <div class="wrapper2_1">
+            <p> ' SQUAT SQUAT SQUAT ' </p>
+            <div class="HLorem-ipsum-dolor-s3">
+                    <img src="/monster.c6198690.png" class="Group-3">
+            </div>
+          </div>
     <div class="wrapper2" id="mode">
             <p>SELECT THE PLAYER MODE</p>
             <div class="HLorem-ipsum-dolor-s2">
                     You can enjoy LIVE Mode alone or with your friends at home or play with your friends from different locations.          
             </div>
-            <a href="/battle.html"><img width="50%" height="200%" src="/1p.3e067d8e.png" alt="1p"></a>
-            <a href="/battle.html"><img width="50%" height="200%" src="/2p.6593bb09.png" alt="2p"></a>
+            <br>
+            <a href="/battle.html"><img width="350px" height="300%" src="/1p.3e067d8e.png" alt="1p"></a>
+            <a href="/battle.html"><img width="350px" height="300%" src="/2p.6593bb09.png" alt="2p"></a>
     </div>
-  <!-- <div class="wrapper2">
-    <p>WHAT WE OFFER</p>
-    <div class="HLorem-ipsum-dolor-s">
-        
+    <div class="dummy">
+        <img src="/monster1.d73d4383.gif">
     </div>
-  </div> -->
 
     <!-- <div class="footer">
         <div class="footer-text">
@@ -475,4 +526,4 @@
     <script src="/camera.283d5d54.js"></script>
 </body>
 
-</html>
+</html>sdfsadfsf

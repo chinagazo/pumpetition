@@ -102,20 +102,21 @@
                 <div class="Rectangle">
                     Player1
                 </div>
-                <div class="scoreboardleft">
-                        30
+                <div class="scoreboardleft" id="oneP_c">
+                        0
                 </div>
                 <div class="Rectangle2">
                     Player2
                 </div>
-                <div class="scoreboardright">
-                        50
+                <div class="scoreboardright" id="twoP_c">
+                        0
                 </div> 
         </div>
 
             
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
                  https://firebase.google.com/docs/web/setup#config-web-app -->
@@ -138,7 +139,9 @@ firebase.initializeApp(firebaseConfig);</script>
    
 
 
-   <script language="JavaScript">var SetTime = 1; // 최초 설정 시간(기본 : 초)
+    <script language="JavaScript">var SetTime = 10; // 최초 설정 시간(기본 : 초)
+
+var check = 1;
 
 function msg_time() {
   // 1초씩 카운트      
@@ -151,19 +154,33 @@ function msg_time() {
 
   if (SetTime < 0) {
     // 시간이 종료 되었으면..   
-    clearInterval(tid); // 타이머 해제
+    // 타이머 해제
+    if (check != 0) {
+      //alert("시작");
+      firebase.database().ref('battle/p1').set(0);
+      firebase.database().ref('battle/p2').set(0);
+    }
 
-    alert("경기가 종료 되었습니다."); // showPopup();
+    SetTime = 30;
+    check = check - 1;
   }
-}
 
-function showPopup() {
-  window.open("winpopup.html", "a", "width=400, height=300, left=100, top=50history=no,resizable=no,status=no,scrollbars=yes,menubar=no");
+  if (check == -1) {
+    clearInterval(tid);
+
+    if ($("#OneP_c").html() > $("#TwoP_c").html()) {
+      alert("Player 1! " + $("#OneP_c").html());
+    } else {
+      alert("Player 2! " + $("#TwoP_c").html());
+    }
+  }
 }
 
 window.onload = function TimerStart() {
   tid = setInterval('msg_time()', 1000);
 };</script>
+
+
     <script src="/camera1.3a6bc79a.js"></script>
 </body>
 </html>
