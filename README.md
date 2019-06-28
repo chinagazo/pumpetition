@@ -1,4 +1,4 @@
-#죽음의 스쿼트배틀 : PUMPETITION
+# 죽음의 스쿼트배틀 : PUMPETITION
 
 ### 환영의 말
 환영합니다.
