@@ -4,12 +4,12 @@
 <style>
         @font-face {
             font-family: myFirstFont;
-            src: url(OCRAStd.otf);
+            src: url(./assets/OCRAStd.otf);
              font-weight: bold;
         }
         @font-face {
             font-family: myFirstFont1;
-            src: url(Brandon_med.otf);
+            src: url(./assets/Brandon_med.otf);
              font-weight: bold;
         }
         .scoreboardleft{
@@ -17,7 +17,7 @@
                 top:12%;
                 left:2%;
                 font-family: myFirstFont;
-                font-size:110px; 
+                font-size:110px;
                 text-shadow: 4px 2px 2px black;
                 color: #ffffff;
             }
@@ -26,7 +26,7 @@
                 top:12%;
                 left:90%;
                 font-family: myFirstFont;
-                font-size:110px; 
+                font-size:110px;
                 text-shadow: 4px 2px 2px black;
                 color: #18ffca;
         }
@@ -35,7 +35,7 @@
             top:80%;
             left:45%;
             font-family: myFirstFont;
-            font-size:29px; 
+            font-size:29px;
             text-shadow: 4px 2px 2px black;
             color: #ffffff;
         }
@@ -50,7 +50,7 @@
             height: 93px;
             background-color: #000000;
             font-family: myFirstFont1;
-            font-size:62px; 
+            font-size:62px;
             text-align: center;
             color:#ffffff;
         }
@@ -62,7 +62,7 @@
             height: 93px;
             background-color: #000000;
             font-family: myFirstFont1;
-            font-size:62px; 
+            font-size:62px;
             text-align: center;
             color:#18ffca;
         }
@@ -115,10 +115,10 @@
                 </div>
                 <div class="scoreboardright" id="twoP_c">
                         0
-                </div> 
+                </div>
         </div>
 
-            
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -143,18 +143,18 @@
 
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
 
-   
+
 
 
     <script language="JavaScript">
             var SetTime = 10;      // 최초 설정 시간(기본 : 초)
             var check = 1;
-            function msg_time() {   // 1초씩 카운트      
-               m =  (SetTime % 60) + "초";   // 남은 시간 계산   
-               var msg =  m ;   
-               document.all.ViewTimer.innerHTML = msg;      // div 영역에 보여줌       
+            function msg_time() {   // 1초씩 카운트
+               m =  (SetTime % 60) + "초";   // 남은 시간 계산
+               var msg =  m ;
+               document.all.ViewTimer.innerHTML = msg;      // div 영역에 보여줌
                SetTime--;               // 1초씩 감소
-               if (SetTime < 0) {         // 시간이 종료 되었으면..   
+               if (SetTime < 0) {         // 시간이 종료 되었으면..
                       // 타이머 해제
                   if(check !=0){
                     //alert("시작");
@@ -165,17 +165,17 @@
                   check = check -1;
                }
                if(check == -1){
-                 clearInterval(tid); 
+                 clearInterval(tid);
                  if($("#OneP_c").html() > $("#TwoP_c").html() ) {
                      alert("Player 1! " + $("#OneP_c").html());
                  }
                  else {
                     alert("Player 2! " + $("#TwoP_c").html());
                  }
-                   
+
                }
             }
-            window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };   
+            window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
          </script>
 
 
