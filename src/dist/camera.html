@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PoseNet - Camera Feed Demo</title>
+    <style>.Desktop-HD-Copy {
+        /* width: 1440px;
+        height: 1024px; */
+        background-color: #000000;
+        /* overflow-x:hidden; */
+        
+        }
+
+        body::-webkit-scrollbar { 
+            display: none; 
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: black;
+        }
+
+        .footer-text {
+            max-width: 600px;
+            text-align: center;
+            margin: auto;
+        }
+
+        @media only screen and (max-width: 600px) {
+
+            .footer-text,
+            .dg {
+                display: none;
+            }
+        }
+
+        /*
+         *  The following loading spinner CSS is from SpinKit project
+         *  https://github.com/tobiasahlin/SpinKit
+         */
+        .sk-spinner-pulse {
+            width: 20px;
+            height: 20px;
+            margin: auto 10px;
+            float: left;
+            background-color: #333;
+            border-radius: 100%;
+            -webkit-animation: sk-pulseScaleOut 1s infinite ease-in-out;
+            animation: sk-pulseScaleOut 1s infinite ease-in-out;
+        }
+
+        @-webkit-keyframes sk-pulseScaleOut {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            100% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sk-pulseScaleOut {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            100% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+                opacity: 0;
+            }
+        }
+/* 
+        @font-face{
+            font-family: 'OCRAStd';
+            font-style: normal;
+            font-size: 160px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #ffffff;
+        } */
+
+        .spinner-text {
+            float: left;
+        }
+
+        .PUMPETITION {
+            top:4%;
+            position:absolute;
+            width: 100%;
+            height: 100%;
+            font-family: myFirstFont;
+            font-size: 140px;
+            font-weight: normal;
+            margin-left:20%;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #ffffff;
+        }
+        @font-face {
+            font-family: myFirstFont;
+            src: url(/OCRAStd.0a099fb2.otf);
+             font-weight: bold;
+        }
+
+        .PUMP-OR-DEATH---THE {
+            position:relative;
+            width: 100%;
+            height: 20%;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 30px;
+            text-align:center;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+            }
+            .Rectangle {
+                top: 19%;
+                position:absolute;
+                width: 57.5%;
+                height: 3%;
+                margin-left:20%;
+                margin-right:5%;
+                border: solid 1px  #9a9a9a;
+                background-color:  #9a9a9a;
+                padding-top:10px;
+                padding-bottom:10px;
+            }
+            .Oval {
+                top:7%;
+                position:relative;
+                width: 128px;
+                height: 128px;
+                background-color: #ffffff;
+            }
+            .LETSGO {
+                top:8%;
+                position:relative;
+            width: 108px;
+            height: 25px;
+            background-color: #000000;
+            font-family: myFirstFont;
+            font-size: 25px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+            }
+ 
+            @font-face {
+                font-family: myFirstFont2;
+                src: url(/Brandon_med.ad069a49.otf);
+                font-weight: bold;
+            }
+
+            .wrapper1{
+            display: table;
+            width: 201px;
+            height: 31px;
+            margin: 0 auto;
+            margin-top:260px;
+            }
+            .wrapper2{
+            display: table;
+            width: 700px;
+            height: 31px;
+            margin: 0 auto;
+            margin-top:320px;
+            margin-bottom: 200px;
+            }
+            .wrapper2_1{
+            display: table;
+            width: 514px;
+            height: 31px;
+            margin: 0 auto;
+            margin-top:100px;
+            }
+            .wrapper1 p {
+            position: relative;
+            text-align: center;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 31px;
+            color: #ffffff;
+            }
+            .HLorem-ipsum-dolor-s {
+            position: relative;
+            text-align: center;
+            width: 654px;
+            /* height: 145px; */
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont2;
+            font-size: 20px;
+            font-weight: 500;
+            color: #ffffff;
+            }
+            .wrapper2 p {
+            position: relative;
+            text-align: center;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 31px;
+            color: #ffffff;
+            }
+            .wrapper2_1 p {
+            position: relative;
+            text-align: center;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 32px;
+            width: 530px;
+            color: #18ffca;
+            }
+            .round {
+            position: absolute;
+            width: 603.1px;
+            height: 679px;
+            object-fit: contain;
+            transform: rotate(-119deg);
+            animation:spin 15s linear infinite;
+            /* border-radius: 26px;
+            border: solid 1px #979797; */
+            top: 10%;
+            left: 70%;
+            z-index: -1;
+            }
+
+            .Combined-Shape {
+            position: absolute;
+            width: 932px;
+            height: 1096px;
+            object-fit: contain;
+            /* border-radius: 26px;
+            border: solid 1px #979797; */
+            top: 107%;
+            left: -12%;
+            }
+            .O2 {
+            position: absolute;
+            width: 137px;
+            height: 216px;
+            object-fit: contain;
+            top: 2%;
+            left: 5%;
+            }
+            .O {
+            position: absolute;
+            width: 122px;
+            height: 70%;
+            object-fit: contain;
+            top: 100%;
+            left: 76%;
+            transform:scale(2.5);
+            }
+            .navi{
+                top: 1%;
+                position: absolute;
+                width:100%; 
+                height:20px;
+                font-size:14px;
+                font-family: myFirstFont;
+                letter-spacing: normal;
+                color: #ffffff;
+            }
+            ul{
+                margin-left:60%;
+            }
+
+            ul, li{
+                display:inline;
+                list-style-type: none;
+            }
+
+            a{
+                color: black;
+                text-decoration: none;
+            }
+
+            li > a {
+                color:white;
+            }
+    
+            #letsGo{
+                top:89%;
+                position:absolute;
+                width:200px;
+                height:200px;
+                object-fit:contain;
+                margin-left:45%;
+                background-color: #18ffca;
+                border-radius: 50%;
+                border-color: #000000;
+                border-collapse: collapse;
+                font-family: myFirstFont;  
+                font-size:29px; 
+                line-height: 1.3;
+                color:black;
+                cursor:pointer;
+            }
+
+            .camerawrapper{
+                position: relative;
+            }
+            .scoreboardleft{
+                position: absolute;
+                top:0%;
+                left:4%;
+                font-family: myFirstFont;
+                font-size:29px; 
+                text-shadow: 4px 2px 2px black;
+                color: #ffffff;
+            }
+            .scoreboardright{
+                position: absolute;
+                top:0%;
+                left:90%;
+                font-family: myFirstFont;
+                font-size:29px; 
+                text-shadow: 4px 2px 2px black;
+                color: #ffffff;
+            }
+            .We-track-your-poses {
+                top:79%;
+                left:40%;
+                position:absolute;
+                object-fit: contain;
+                font-family: myFirstFont2;
+                font-size: 20px;
+                font-weight: 500;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: center;
+                margin-left:1em;
+                color: #ffffff;
+            }
+            #GOtext{
+                font-size:45px;
+            }
+            .players{
+                width:100px;
+                height:100px;
+            }
+            .HLorem-ipsum-dolor-s2 {
+            position: relative;
+            text-align: center;
+            width: 100%;
+            /* height: 145px; */
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont2;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom:68px;
+            color: #ffffff;
+            }
+           
+            .EF {
+                width: 1600px;
+                height: 1019px;
+            }
+
+            .Group-3{
+                position: absolute;
+                width: 252px;
+                height: 426px;
+                object-fit: contain;
+                top:0%;
+                left:28%;
+                margin-bottom: 50px;
+            }
+
+            .HLorem-ipsum-dolor-s3 {
+            position: relative;
+            text-align: center;
+            width: 100%;
+            height: 300px;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont2;
+            text-align: center;
+            font-size: 30px;
+            }
+
+            .dummy{
+                background: url(/monster1.d73d4383.gif);
+            }
+
+            @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="Desktop-HD-Copy">
+        
+        <div id="main" style="display:none;" class="camerawrapper">
+                <video id="video" playsinline="" style=" -moz-transform: scaleX(-1);
+                -o-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+                display: none;
+                ">
+                </video>
+                <canvas id="output" style="display:flex;">
+                </canvas>
+                    
+                    <!-- <div class="scoreboardleft">
+                        <h1>P1</h1>
+                        30
+                    </div>
+                    <div class="scoreboardright">
+                        <h1>P2</h1>
+                        50
+                    </div> -->
+        
+
+        <div class="navi">
+                <ul>
+                    <li><a href="#HOME">HOME</a></li>
+                    <li><a href="#WHY">WHY</a></li>
+                    <li><a href="#mode">HOW</a></li>
+                    <li><a href="#RANKING">RANKING</a></li>
+                    <li><a href="#ABOUTUS">ABOUT US</a></li>
+                </ul>
+            </div>
+
+        <br>
+    
+        <div id="info" style="display:none">
+            </div>
+            <div id="loading" style="display:flex;position: relative;">
+                <!-- <div class="spinner-text">
+                    Loading PoseNet model...
+                </div> -->
+                <div class="sk-spinner sk-spinner-pulse"></div>
+            </div>
+            <div class="PUMPETITION" style="display:flex;">
+                    <div>PUMPETITION</div>
+            </div>
+                <div class="Rectangle" style="display:flex;">
+                    <div class="PUMP-OR-DEATH---THE">
+                        PUMP OR DEATH - THE DEATH OF COMPETITION
+                    </div>
+                </div>
+    <img src="/o-2.1fa6fd97.png" srcset="/o-2@2x.c5f94955.png 2x,/o-2@3x.4f295fbb.png 3x" class="O2">
+    <img src="/round.6c9daedc.png" srcset="/round@2x.c7dba7ec.png 2x,/round@3x.afda59b3.png 3x" class="round">
+                
+    <img src="/combined-shape.2a638154.png" srcset="/combined-shape@2x.80f434ab.png 2x,/combined-shape@3x.65eaec4d.png 3x" class="Combined-Shape">
+    <img src="/o@3x.f0b8ee65.png" srcset="/o@2x.a7eaf2c1.png 2x,/o@3x.f0b8ee65.png 3x" class="O">
+
+    <p class="We-track-your-poses">We track your poses<br>
+    Inspire yourself while working out with people
+    </p>
+    <button type="button" id="letsGo"><a href="#mode">LETS<br><span id="GOtext">GO</span></a></button>
+    </div>
+    <div class="wrapper1" id="WHY">
+        <p>HOW IT WORKS</p>
+        <div class="HLorem-ipsum-dolor-s">
+            We connect to people who want to fight a match to help people to get inspired 
+            workout more often. Through pose estimation technology, we track your bone
+            structure and count your movements.
+        </div>
+    </div>
+    <div class="wrapper2_1">
+            <p> ' SQUAT SQUAT SQUAT ' </p>
+            <div class="HLorem-ipsum-dolor-s3">
+                    <img src="/monster.c6198690.png" class="Group-3">
+            </div>
+          </div>
+    <div class="wrapper2" id="mode">
+            <p>SELECT THE PLAYER MODE</p>
+            <div class="HLorem-ipsum-dolor-s2">
+                    You can enjoy LIVE Mode alone or with your friends at home or play with your friends from different locations.          
+            </div>
+            <br>
+            <a href="/battle.html"><img width="350px" height="300%" src="/1p.3e067d8e.png" alt="1p"></a>
+            <a href="/battle.html"><img width="350px" height="300%" src="/2p.6593bb09.png" alt="2p"></a>
+    </div>
+    <div class="dummy">
+        <img src="/monster1.d73d4383.gif">
+    </div>
+
+    <!-- <div class="footer">
+        <div class="footer-text">
+            <p>
+                PoseNet runs with either a <strong>single-pose</strong> or <strong>multi-pose</strong> detection
+                algorithm. The single person pose detector is faster and more accurate but requires only one subject
+                present in the image.
+                <br>
+                <br> The <strong>output stride</strong> and <strong>input resolution</strong> have the largest effects
+                on accuracy/speed. A <i>higher</i> output stride results in lower accuracy but higher speed. A
+                <i>higher</i> image scale factor results in higher accuracy but lower speed. </p>
+        </div>
+    </div> -->
+       
+   
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+      
+    </style>
+    <!-- <script>
+        function fnMove(){
+            var offset = $("#main").offset();
+            $('html, body').animate({scrollTop : offset.top}, 400);
+        }
+    </script> -->
+
+
+    <!--Camera.js 쓰기 전에 위의 Firebase Code 있어야 함.-->
+    <script src="/camera.283d5d54.js"></script>
+</body>
+
+</html>sdfsadfsf

@@ -1,0 +1,189 @@
+<html>
+<head>
+<title>Timer</title>
+<style>@font-face {
+            font-family: myFirstFont;
+            src: url(/OCRAStd.0a099fb2.otf);
+             font-weight: bold;
+        }
+        @font-face {
+            font-family: myFirstFont1;
+            src: url(/Brandon_med.ad069a49.otf);
+             font-weight: bold;
+        }
+        .scoreboardleft{
+                position: absolute;
+                top:12%;
+                left:2%;
+                font-family: myFirstFont;
+                font-size:110px; 
+                text-shadow: 4px 2px 2px black;
+                color: #ffffff;
+            }
+        .scoreboardright{
+                position: absolute;
+                top:12%;
+                left:90%;
+                font-family: myFirstFont;
+                font-size:110px; 
+                text-shadow: 4px 2px 2px black;
+                color: #18ffca;
+        }
+        .timeposition{
+            position: absolute;
+            top:80%;
+            left:45%;
+            font-family: myFirstFont;
+            font-size:29px; 
+            text-shadow: 4px 2px 2px black;
+            color: #ffffff;
+        }
+        .camerawrapper{
+                position: relative;
+        }
+        .Rectangle {
+            position: absolute;
+            top:0%;
+            left:0%;
+            width: 240px;
+            height: 93px;
+            background-color: #000000;
+            font-family: myFirstFont1;
+            font-size:62px; 
+            text-align: center;
+            color:#ffffff;
+        }
+        .Rectangle2 {
+            position: absolute;
+            top:0%;
+            left:87%;
+            width: 240px;
+            height: 93px;
+            background-color: #000000;
+            font-family: myFirstFont1;
+            font-size:62px; 
+            text-align: center;
+            color:#18ffca;
+        }
+        .Rectangle3{
+            position: absolute;
+            top:0%;
+            left:0%;
+            width: 100%;
+            height: 93px;
+            object-fit: contain;
+            background-color: #9a9a9a;
+            object-fit: contain;
+            -webkit-text-stroke: 1px #000000;
+            font-family: myFirstFont;
+            font-size: 18px;
+            text-align: center;
+            color: #000000;
+        }</style>
+</head>
+<body>
+        <div id="loading" style="display:flex;position: relative;">
+                <!-- <div class="spinner-text">
+                    Loading PoseNet model...
+                </div> -->
+                <div class="sk-spinner sk-spinner-pulse"></div>
+        </div>
+        <div id="main1" style="display:none;" class="camerawrapper">
+                <video id="video" playsinline="" style=" -moz-transform: scaleX(-1);
+                -o-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+                display: none;
+                ">
+                </video>
+                <canvas id="output1" style="display:flex;">
+                </canvas>
+                <!-- <div class="Rectangle3">
+                    PUMP OR DEATH - THE DEATHOF COMPETITION
+                </div> -->
+                <div id="ViewTimer" class="timeposition"></div>
+                <div class="Rectangle">
+                    Rival
+                </div>
+                <div class="scoreboardleft" id="oneP_c">
+                        0
+                </div>
+                <div class="Rectangle2">
+                    Me
+                </div>
+                <div class="scoreboardright" id="twoP_c">
+                        0
+                </div> 
+        </div>
+
+            
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+                 https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyCSa3Vfhsfe6UCuijYr_RoaNb3kzFnwLZM",
+  authDomain: "openhackfinal.firebaseapp.com",
+  databaseURL: "https://openhackfinal.firebaseio.com",
+  projectId: "openhackfinal",
+  storageBucket: "",
+  messagingSenderId: "113425041146",
+  appId: "1:113425041146:web:58106b374a7d6631"
+}; // Initialize Firebase
+
+firebase.initializeApp(firebaseConfig);</script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+
+   
+
+
+    <script language="JavaScript">var SetTime = 10; // 최초 설정 시간(기본 : 초)
+
+var check = 1;
+
+function msg_time() {
+  // 1초씩 카운트      
+  m = SetTime % 60 + "초"; // 남은 시간 계산   
+
+  var msg = m;
+  document.all.ViewTimer.innerHTML = msg; // div 영역에 보여줌       
+
+  SetTime--; // 1초씩 감소
+
+  if (SetTime < 0) {
+    // 시간이 종료 되었으면..   
+    // 타이머 해제
+    if (check != 0) {
+      //alert("시작");
+      firebase.database().ref('battle/p1').set(0);
+      firebase.database().ref('battle/p2').set(0);
+    }
+
+    SetTime = 30;
+    check = check - 1;
+  }
+
+  if (check == -1) {
+    clearInterval(tid);
+
+    if ($("#OneP_c").html() > $("#TwoP_c").html()) {
+      alert("Player 1! " + $("#OneP_c").html());
+    } else {
+      alert("Player 2! " + $("#TwoP_c").html());
+    }
+  }
+}
+
+window.onload = function TimerStart() {
+  tid = setInterval('msg_time()', 1000);
+};</script>
+
+
+    <script src="/camera1.3a6bc79a.js"></script>
+</body>
+</html>
