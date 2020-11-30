@@ -9,12 +9,10 @@
 <p align="center">
   Pose estimation 기술을 이용한 웹캠 동작인식 스쿼트 대결 웹앱입니다.<br/><br/>
 
-  🥇 전국 소프트웨어 중심대학 연합 오픈소스 해커톤 1위 (2019. 06) - 과학기술정보통신부장관상 수상<br/>
-  🥈 한-중 글로벌 해커톤 (2019. 08) - 중국산업정보기술연구소 2등상
-</p>
+  🥇 전국 소프트웨어 중심대학 연합 오픈소스 해커톤 (2019. 06) - 과학기술정보통신부장관상 수상<br/>
+  🥈 한-중 글로벌 해커톤 (2019. 08) - 중국산업정보기술연구소 2등상<br/><br/>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qmYJ3Z4X708" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+  <a href=https://www.youtube.com/embed/qmYJ3Z4X708>작동영상</a>
 
 * * *
 
