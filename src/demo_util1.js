@@ -53,15 +53,20 @@ function setDatGuiPropertyCss(propertyText, liCssString, spanCssString = '') {
 
 export function updateTryResNetButtonDatGuiCss() {
   setDatGuiPropertyCss(
-      tryResNetButtonText, tryResNetButtonBackgroundCss,
-      tryResNetButtonTextCss);
+    tryResNetButtonText,
+    tryResNetButtonBackgroundCss,
+    tryResNetButtonTextCss
+  );
 }
 
 /**
  * Toggles between the loading UI and the main canvas UI.
  */
 export function toggleLoadingUI(
-    showLoadingUI, loadingDivId = 'loading', mainDivId = 'main1') {
+  showLoadingUI,
+  loadingDivId = 'loading',
+  mainDivId = 'main1'
+) {
   if (showLoadingUI) {
     document.getElementById(loadingDivId).style.display = 'block';
     document.getElementById(mainDivId).style.display = 'none';
@@ -98,13 +103,19 @@ export function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
  * Draws a pose skeleton by looking up all adjacent keypoints/joints
  */
 export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
-  const adjacentKeyPoints =
-      posenet.getAdjacentKeyPoints(keypoints, minConfidence);
+  const adjacentKeyPoints = posenet.getAdjacentKeyPoints(
+    keypoints,
+    minConfidence
+  );
 
   adjacentKeyPoints.forEach((keypoints) => {
     drawSegment(
-        toTuple(keypoints[0].position), toTuple(keypoints[1].position), color,
-        scale, ctx);
+      toTuple(keypoints[0].position),
+      toTuple(keypoints[1].position),
+      color,
+      scale,
+      ctx
+    );
   });
 }
 
@@ -112,115 +123,123 @@ let dataX = [];
 let dataY = [];
 let data1 = {};
 
-export function storePointData(part, x, y){
-    data1[part] = {'x':x,'y':y};
+export function storePointData(part, x, y) {
+  data1[part] = {x: x, y: y};
 }
 
-setInterval(function(){
+setInterval(function () {
   dataX = [];
   dataY = [];
 }, 1000);
 
 // function checkRightPosition(part1){
 
-//     if((part1 == 'leftShoulder') || (part1 == 'leftElbow') || (part1 == 'leftWrist') || 
+//     if((part1 == 'leftShoulder') || (part1 == 'leftElbow') || (part1 == 'leftWrist') ||
 //     (part1 == 'rightShoulder') || (part1 == 'rightElbow') || (part1 == 'rightWrist')  ){
-      
+
 //         return true;
-      
+
 //     }
 // }
 
 function find_angle(A, B, C) {
   // console.log(`${A} ${B} ${C}`);
 
-  var AB = Math.sqrt(Math.pow(B['x'] - A['x'], 2) + Math.pow(B['y'] - A['y'], 2));
-  var BC = Math.sqrt(Math.pow(B['x'] - C['x'], 2) + Math.pow(B['y'] - C['y'], 2));
-  var AC = Math.sqrt(Math.pow(C['x'] - A['x'], 2) + Math.pow(C['y'] - A['y'], 2));
-  return parseInt((Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB)) / Math.PI * 180).toFixed(1));
+  var AB = Math.sqrt(
+    Math.pow(B['x'] - A['x'], 2) + Math.pow(B['y'] - A['y'], 2)
+  );
+  var BC = Math.sqrt(
+    Math.pow(B['x'] - C['x'], 2) + Math.pow(B['y'] - C['y'], 2)
+  );
+  var AC = Math.sqrt(
+    Math.pow(C['x'] - A['x'], 2) + Math.pow(C['y'] - A['y'], 2)
+  );
+  return parseInt(
+    (
+      (Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB)) / Math.PI) *
+      180
+    ).toFixed(1)
+  );
 }
-
 
 let check = 0;
 let count = 0;
 
-function countCheck(value){
+function countCheck(value) {
   let status = 0;
-  if(value <= 90 && value >= 20)
-  {
+  if (value <= 90 && value >= 20) {
     status = 0;
     check++;
-  } 
-  else if(value >= 160 )
-  {
+  } else if (value >= 160) {
     status = 1;
     check++;
   }
-  return status;  
+  return status;
 }
 
 /**
  * Draw pose keypoints onto a canvas
  */
 export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
+  for (let i = 0; i < keypoints.length; i++) {
+    const keypoint = keypoints[i];
 
+    if (keypoint.score < minConfidence) {
+      continue;
+    }
+    // console.log(data1);
+    // if(checkRightPosition(keypoint.part)){
+    const {y, x} = keypoint.position;
+    // console.log(`${keypoint.part}, x: ${x}, y: ${y}`);
+    storePointData(keypoint.part, x, y);
+    // console.log(data1);
+    // let keys = Object.keys(data1);
+    let value, value1;
+    if (
+      data1.hasOwnProperty('leftShoulder') &&
+      data1.hasOwnProperty('leftElbow') &&
+      data1.hasOwnProperty('leftWrist')
+    ) {
+      // console.log(data1['leftShoulder']['x']);
+      value = find_angle(
+        data1['leftShoulder'],
+        data1['leftElbow'],
+        data1['leftWrist']
+      );
+      let checker = countCheck(value);
 
-    for (let i = 0; i < keypoints.length; i++) {
+      // if(checker == 0 )
+      // {
+      //   if(check > 2)
+      //   {
+      //     check = 0;
+      //     count += 1;
+      //   }
+      // }
+      // console.log(checker+", "+value+", "+check+", "+count);
+    }
 
-      const keypoint = keypoints[i];
-  
-      if (keypoint.score < minConfidence) {
-        continue;
-      }
-      // console.log(data1);
-      // if(checkRightPosition(keypoint.part)){
-        const {y, x} = keypoint.position;
-        // console.log(`${keypoint.part}, x: ${x}, y: ${y}`);
-        storePointData(keypoint.part, x, y);
-        // console.log(data1);
-        // let keys = Object.keys(data1);
-        let value,value1;
-        if(data1.hasOwnProperty('leftShoulder') && data1.hasOwnProperty('leftElbow') && data1.hasOwnProperty('leftWrist') ){
-          // console.log(data1['leftShoulder']['x']);
-          value = find_angle(data1['leftShoulder'], data1['leftElbow'], data1['leftWrist']);
-          let checker = countCheck(value);
-          
-          // if(checker == 0 )
-          // {
-          //   if(check > 2)
-          //   {
-          //     check = 0;
-          //     count += 1;
-          //   }
-          // }
-          // console.log(checker+", "+value+", "+check+", "+count);
-        }
+    // if(data1.hasOwnProperty('rightShoulder') && data1.hasOwnProperty('rightElbow') && data1.hasOwnProperty('rightWrist') ){
+    //   value1 = find_angle(data1['rightShoulder'], data1['rightElbow'], data1['rightWrist']);
+    // }
 
-        // if(data1.hasOwnProperty('rightShoulder') && data1.hasOwnProperty('rightElbow') && data1.hasOwnProperty('rightWrist') ){
-        //   value1 = find_angle(data1['rightShoulder'], data1['rightElbow'], data1['rightWrist']);
-        // }
-        
-        // if (value && value1){
-        //   dataX.push([value1]);
-        //   datay.push([value2]);
-        // }
+    // if (value && value1){
+    //   dataX.push([value1]);
+    //   datay.push([value2]);
+    // }
 
-        // let resultX = dataX.reduce((total, score) => total + score) / scores.length;
-        // let resultY = dataY.reduce((total, score) => total + score) / scores.length;
-      
+    // let resultX = dataX.reduce((total, score) => total + score) / scores.length;
+    // let resultY = dataY.reduce((total, score) => total + score) / scores.length;
 
+    // if(){
 
+    // }
 
-        // if(){
-
-        // }
-
-        drawPoint(ctx, y * scale, x * scale, 3, color);
-      }
+    drawPoint(ctx, y * scale, x * scale, 3, color);
   }
-  // console.log(data.length);
+}
+// console.log(data.length);
 
-  
 // }
 
 /**
@@ -232,8 +251,11 @@ export function drawBoundingBox(keypoints, ctx) {
   const boundingBox = posenet.getBoundingBox(keypoints);
 
   ctx.rect(
-      boundingBox.minX, boundingBox.minY, boundingBox.maxX - boundingBox.minX,
-      boundingBox.maxY - boundingBox.minY);
+    boundingBox.minX,
+    boundingBox.minY,
+    boundingBox.maxX - boundingBox.minX,
+    boundingBox.maxY - boundingBox.minY
+  );
 
   ctx.strokeStyle = boundingBoxColor;
   ctx.stroke();
@@ -311,9 +333,17 @@ function drawPoints(ctx, points, radius, color) {
  * https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5
  */
 export function drawOffsetVectors(
-    heatMapValues, offsets, outputStride, scale = 1, ctx) {
-  const offsetPoints =
-      posenet.singlePose.getOffsetPoints(heatMapValues, outputStride, offsets);
+  heatMapValues,
+  offsets,
+  outputStride,
+  scale = 1,
+  ctx
+) {
+  const offsetPoints = posenet.singlePose.getOffsetPoints(
+    heatMapValues,
+    outputStride,
+    offsets
+  );
 
   const heatmapData = heatMapValues.buffer().values;
   const offsetPointsData = offsetPoints.buffer().values;
@@ -325,6 +355,11 @@ export function drawOffsetVectors(
     const offsetPointX = offsetPointsData[i + 1];
 
     drawSegment(
-        [heatmapY, heatmapX], [offsetPointY, offsetPointX], color, scale, ctx);
+      [heatmapY, heatmapX],
+      [offsetPointY, offsetPointX],
+      color,
+      scale,
+      ctx
+    );
   }
 }

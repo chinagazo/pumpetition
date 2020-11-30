@@ -17,8 +17,18 @@
 import * as posenet from '@tensorflow-models/posenet';
 // import dat from 'dat.gui';
 import Stats from 'stats.js';
+import firebase from 'firebase';
 
-import { drawBoundingBox, drawKeypoints, drawSkeleton, isMobile, toggleLoadingUI, tryResNetButtonName, tryResNetButtonText, updateTryResNetButtonDatGuiCss } from './demo_util1';
+import {
+  drawBoundingBox,
+  drawKeypoints,
+  drawSkeleton,
+  isMobile,
+  toggleLoadingUI,
+  tryResNetButtonName,
+  tryResNetButtonText,
+  updateTryResNetButtonDatGuiCss,
+} from './demo_util1';
 
 const videoWidth = 2000;
 const videoHeight = 800;
@@ -37,12 +47,13 @@ const op_player = 'p2';
 firebase.database().ref('battle').child('p1').set(0);
 firebase.database().ref('battle').child('p2').set(0);
 
-
-firebase.database().ref('battle').child(op_player).on('value', function (data) {
-  $("#oneP_c").html(data.val());
-});
-
-
+firebase
+  .database()
+  .ref('battle')
+  .child(op_player)
+  .on('value', function (data) {
+    $('#oneP_c').html(data.val());
+  });
 
 /**
  * Loads a the camera to be used in the demo
@@ -51,7 +62,8 @@ firebase.database().ref('battle').child(op_player).on('value', function (data) {
 async function setupCamera() {
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
     throw new Error(
-      'Browser API navigator.mediaDevices.getUserMedia not available');
+      'Browser API navigator.mediaDevices.getUserMedia not available'
+    );
   }
 
   const video = document.getElementById('video');
@@ -60,8 +72,8 @@ async function setupCamera() {
 
   const mobile = isMobile();
   const stream = await navigator.mediaDevices.getUserMedia({
-    'audio': false,
-    'video': {
+    audio: false,
+    video: {
       facingMode: 'user',
       width: mobile ? undefined : videoWidth,
       height: mobile ? undefined : videoHeight,
@@ -85,7 +97,7 @@ async function loadVideo() {
 
 const defaultQuantBytes = 2;
 
-const defaultMobileNetMultiplier = isMobile() ? 0.50 : 0.75;
+const defaultMobileNetMultiplier = isMobile() ? 0.5 : 0.75;
 const defaultMobileNetStride = 16;
 const defaultMobileNetInputResolution = 513;
 
@@ -100,7 +112,7 @@ const guiState = {
     outputStride: defaultResNetStride,
     inputResolution: defaultResNetInputResolution,
     multiplier: defaultResNetMultiplier,
-    quantBytes: defaultQuantBytes
+    quantBytes: defaultQuantBytes,
   },
   singlePoseDetection: {
     minPoseConfidence: 0.1,
@@ -272,7 +284,6 @@ function setupGui(cameras, net) {
   // output.add(guiState.output, 'showBoundingBox');
   // output.open();
 
-
   // architectureController.onChange(function(architecture) {
   //   // if architecture is ResNet50, then show ResNet50 options
   //   updateGui();
@@ -297,7 +308,7 @@ function setupGui(cameras, net) {
  * Sets up a frames per second panel on the top-left of the window
  */
 function setupFPS() {
-  stats.showPanel(0);  // 0: fps, 1: ms, 2: mb, 3+: custom
+  stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
   document.getElementById('main1').appendChild(stats.dom);
 }
 
@@ -342,7 +353,7 @@ function detectPoseInRealTime(video, net) {
         outputStride: guiState.outputStride,
         inputResolution: guiState.inputResolution,
         multiplier: +guiState.changeToMultiplier,
-        quantBytes: guiState.quantBytes
+        quantBytes: guiState.quantBytes,
       });
       toggleLoadingUI(false);
       guiState.multiplier = +guiState.changeToMultiplier;
@@ -358,7 +369,7 @@ function detectPoseInRealTime(video, net) {
         outputStride: +guiState.changeToOutputStride,
         inputResolution: guiState.inputResolution,
         multiplier: guiState.multiplier,
-        quantBytes: guiState.quantBytes
+        quantBytes: guiState.quantBytes,
       });
       toggleLoadingUI(false);
       guiState.outputStride = +guiState.changeToOutputStride;
@@ -374,7 +385,7 @@ function detectPoseInRealTime(video, net) {
         outputStride: guiState.outputStride,
         inputResolution: +guiState.changeToInputResolution,
         multiplier: guiState.multiplier,
-        quantBytes: guiState.quantBytes
+        quantBytes: guiState.quantBytes,
       });
       toggleLoadingUI(false);
       guiState.inputResolution = +guiState.changeToInputResolution;
@@ -390,7 +401,7 @@ function detectPoseInRealTime(video, net) {
         outputStride: guiState.outputStride,
         inputResolution: guiState.inputResolution,
         multiplier: guiState.multiplier,
-        quantBytes: guiState.changeToQuantBytes
+        quantBytes: guiState.changeToQuantBytes,
       });
       toggleLoadingUI(false);
       guiState.quantBytes = guiState.changeToQuantBytes;
@@ -407,7 +418,7 @@ function detectPoseInRealTime(video, net) {
       case 'single-pose':
         const pose = await guiState.net.estimatePoses(video, {
           flipHorizontal: flipPoseHorizontal,
-          decodingMethod: 'single-person'
+          decodingMethod: 'single-person',
         });
         poses = poses.concat(pose);
         minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
@@ -419,7 +430,7 @@ function detectPoseInRealTime(video, net) {
           decodingMethod: 'multi-person',
           maxDetections: guiState.multiPoseDetection.maxPoseDetections,
           scoreThreshold: guiState.multiPoseDetection.minPartConfidence,
-          nmsRadius: guiState.multiPoseDetection.nmsRadius
+          nmsRadius: guiState.multiPoseDetection.nmsRadius,
         });
 
         poses = poses.concat(all_poses);
@@ -442,7 +453,7 @@ function detectPoseInRealTime(video, net) {
     // and draw the resulting skeleton and keypoints if over certain confidence
     // scores
     let countPeople = 0;
-    poses.forEach(({ score, keypoints }) => {
+    poses.forEach(({score, keypoints}) => {
       if (score >= minPoseConfidence) {
         if (guiState.output.showPoints) {
           countPeople++;
@@ -457,22 +468,24 @@ function detectPoseInRealTime(video, net) {
       }
     });
 
-
     /*===================== Kyuwon code ==================*/
 
-
-    function reatime_for_two() { // 대전 방 진입할 때 실행
+    function reatime_for_two() {
+      // 대전 방 진입할 때 실행
 
       var player;
       var op_player;
 
       player = 'p1';
       op_player = 'p2';
-    
 
-      firebase.database().ref('battle').child(op_player).on('value', function (data) {
-        $("#op_point").val(data.val());
-      });
+      firebase
+        .database()
+        .ref('battle')
+        .child(op_player)
+        .on('value', function (data) {
+          $('#op_point').val(data.val());
+        });
 
       // DB업데이트 해주는 코드임 갖다 쓰샘 ㅋㅋ
       function updatePlayerScore(score) {
@@ -482,7 +495,6 @@ function detectPoseInRealTime(video, net) {
       function updateOppositeScore(score) {
         firebase.database().ref('battle').child(op_player).set(score);
       }
-
 
       /* 대전을 실행시키기 위한 각종 코드들 여기 삽입 */
 
@@ -498,12 +510,13 @@ function detectPoseInRealTime(video, net) {
 
         function is_sitDown(keypoints) {
           const std_h = videoHeight / 2;
-          var shoulder_h_avg = (keypoints[5].position.y + keypoints[6].position.y) / 2;
+          var shoulder_h_avg =
+            (keypoints[5].position.y + keypoints[6].position.y) / 2;
 
-          if (std_h > shoulder_h_avg) { // 앉았다
+          if (std_h > shoulder_h_avg) {
+            // 앉았다
             return true;
-          }
-          else {
+          } else {
             return false;
           }
         }
@@ -511,32 +524,24 @@ function detectPoseInRealTime(video, net) {
         var cur_stat = is_sitDown(pose_0_keypoints);
         if (prev_stat == true && cur_stat == false) {
           c0 += 1;
-          $("#twoP_c").html(c0);
+          $('#twoP_c').html(c0);
           updatePlayerScore(c0);
           console.log(c0);
         }
         prev_stat = cur_stat;
 
-
         function counter_0_reset() {
           c0 = 0;
           updatePlayerScore(0);
           return;
-
         }
 
         /*=====================규원 코드 끝==========================*/
-
       }
     }
     reatime_for_two();
 
-
     /* ======================================== */
-
-
-
-
 
     // console.log(countPeople);
 
@@ -549,7 +554,6 @@ function detectPoseInRealTime(video, net) {
   poseDetectionFrame();
 }
 
-
 /**
  * Kicks off the demo by loading the posenet model, finding and loading
  * available camera devices, and setting off the detectPoseInRealTime function.
@@ -561,7 +565,7 @@ export async function bindPage() {
     outputStride: guiState.input.outputStride,
     inputResolution: guiState.input.inputResolution,
     multiplier: guiState.input.multiplier,
-    quantBytes: guiState.input.quantBytes
+    quantBytes: guiState.input.quantBytes,
   });
   toggleLoadingUI(false);
 
@@ -571,7 +575,8 @@ export async function bindPage() {
     video = await loadVideo();
   } catch (e) {
     let info = document.getElementById('info');
-    info.textContent = 'this browser does not support video capture,' +
+    info.textContent =
+      'this browser does not support video capture,' +
       'or this device does not have a camera';
     info.style.display = 'block';
     throw e;
@@ -582,7 +587,9 @@ export async function bindPage() {
   detectPoseInRealTime(video, net);
 }
 
-navigator.getUserMedia = navigator.getUserMedia ||
-  navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+navigator.getUserMedia =
+  navigator.getUserMedia ||
+  navigator.webkitGetUserMedia ||
+  navigator.mozGetUserMedia;
 // kick off the demo
 bindPage();
