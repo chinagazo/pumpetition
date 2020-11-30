@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/chinagazo/pumpetition">
-    <img src="https://github.com/chinagazo/pumpetition/raw/master/assets/icon.jpg" alt="Health" width="72" height="72">
+    <img src="https://github.com/chinagazo/pumpetition/raw/master/assets/icon.jpg" alt="Health" width="100" height="100">
   </a>
 </p>
 
