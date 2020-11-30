@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/chinagazo/pumpetition">
-    <img src="https://user-images.githubusercontent.com/46713032/58324676-7ff26e80-7e62-11e9-8278-63a8ea262ebb.png" alt="Health" width="72" height="72">
+    <img src="https://github.com/chinagazo/pumpetition/raw/master/assets/icon.jpg" alt="Health" width="72" height="72">
   </a>
 </p>
 
@@ -11,8 +11,7 @@
 
   🥇 전국 소프트웨어 중심대학 연합 오픈소스 해커톤 (2019. 06) - 과학기술정보통신부장관상 수상<br/>
   🥈 한-중 글로벌 해커톤 (2019. 08) - 중국산업정보기술연구소 2등상<br/><br/>
-
-  <a href=https://www.youtube.com/embed/qmYJ3Z4X708>작동영상</a>
+</p>
 
 * * *
 
@@ -34,10 +33,13 @@
 - Project language : Javascript (Node.js 12)
 - Project Source : [**tensorflow/tfjs-models**](https://github.com/tensorflow/tfjs-models)
 
+## Execution Screen
+- [Watch here!](https://www.youtube.com/embed/qmYJ3Z4X708)
+
 
 ## How to run
 
-- [Hosting at](https://snappy-premise-231900.web.app)
+- [Now hosting here!](https://snappy-premise-231900.web.app)
 
 
 ## How to play games
@@ -101,10 +103,13 @@ The One repeat more squat will win the game.
 - 프로젝트 언어 : Node.js(12)
 - 프로젝트 출처 : [**tf-js**](https://github.com/tensorflow/tfjs-models.git)
 
+## 실행 화면
+- [클릭해서 보기!](https://www.youtube.com/embed/qmYJ3Z4X708)
+
 
 ## 실행 방법
 
-- [웹에 호스팅 됨](https://snappy-premise-231900.web.app)
+- [여기 호스팅 됨!](https://snappy-premise-231900.web.app)
 
 
 ## 게임 플레이 방법
