@@ -18,6 +18,7 @@ import * as posenet from '@tensorflow-models/posenet';
 // import dat from 'dat.gui';
 import Stats from 'stats.js';
 import firebase from 'firebase';
+import './config/firebaseInit';
 
 import {
   drawBoundingBox,
