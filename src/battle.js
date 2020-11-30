@@ -28,7 +28,7 @@ import {
   tryResNetButtonName,
   tryResNetButtonText,
   updateTryResNetButtonDatGuiCss,
-} from './demo_util1';
+} from './utils/battle.util';
 
 const videoWidth = 2000;
 const videoHeight = 800;

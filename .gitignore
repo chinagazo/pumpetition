@@ -12,4 +12,5 @@ node_modules
 *.pyc
 
 dist/**/*
-.cache/**/*
+.cache
+**/*/.cache
