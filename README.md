@@ -143,7 +143,7 @@ The One repeat more squat will win the game.
 
 **박규빈**
 - [**@kb829**](https://github.com/kb829)
-- <1234@naver.com>
+- <kbpark829@gmail.com>
 
 **조우석**
 - [**@Jowooseok**](https://github.com/Jowooseok)
