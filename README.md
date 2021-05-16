@@ -71,7 +71,7 @@ The One repeat more squat will win the game.
 
 **Kyubin Park**
 - [**@kb829**](https://github.com/kb829)
-- <1234@naver.com>
+- <kbpark829@gmail.com>
 
 **Wooseok Jo**
 - [**@Jowooseok**](https://github.com/Jowooseok)
